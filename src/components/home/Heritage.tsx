@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
@@ -11,12 +12,15 @@ export default function Heritage() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden bg-cocoa-950 py-24 text-cream-50 lg:py-32">
-      <Pattern className="pointer-events-none absolute inset-0 size-full text-cocoa-700 opacity-50" />
-      <div
-        className="pointer-events-none absolute -bottom-40 -start-32 size-[520px] rounded-full bg-brass-600/15 blur-[160px]"
-        aria-hidden="true"
-      />
+    <section
+      className="relative overflow-hidden bg-cocoa-950 py-24 text-cream-50 lg:py-32"
+      aria-labelledby="heritage-heading"
+    >
+      {/* Background pattern */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Pattern className="size-full text-cocoa-700 opacity-50" />
+        <div className="absolute -bottom-40 -start-32 size-[520px] rounded-full bg-brass-600/15 blur-[120px] max-md:blur-[80px]" />
+      </div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
         {/* Copy */}
@@ -26,6 +30,7 @@ export default function Heritage() {
             title={t.heritage.title}
             align="start"
             tone="dark"
+            id="heritage-heading"
           />
           <Reveal delay={0.1}>
             <p className="max-w-xl text-lg leading-relaxed text-cream-200/80">
@@ -38,7 +43,7 @@ export default function Heritage() {
                 className="absolute -top-5 start-2 font-display text-7xl text-brass-500/40"
                 aria-hidden="true"
               >
-                ”
+                &ldquo;
               </span>
               <p className="font-display text-2xl font-bold text-brass-300 md:text-3xl">
                 {t.heritage.quote}
@@ -46,14 +51,25 @@ export default function Heritage() {
             </blockquote>
           </Reveal>
 
-          {/* Journey */}
+          {/* Journey timeline */}
           <Reveal delay={0.26}>
             <h3 className="mb-5 text-sm font-extrabold uppercase tracking-[0.2em] text-brass-400">
               {t.heritage.journeyTitle}
             </h3>
             <ol className="relative flex flex-col gap-6 border-s border-cocoa-700 ps-6">
-              {t.heritage.journey.map((stop) => (
-                <li key={stop.place} className="relative">
+              {t.heritage.journey.map((stop, index) => (
+                <motion.li
+                  key={stop.place}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    delay: 0.1 + index * 0.08,
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="relative"
+                >
                   <span
                     className="absolute -start-[31px] top-1 size-3 rounded-full border-2 border-brass-400 bg-cocoa-950"
                     aria-hidden="true"
@@ -67,7 +83,7 @@ export default function Heritage() {
                     </span>
                   </div>
                   <p className="mt-0.5 text-sm text-cream-200/60">{stop.note}</p>
-                </li>
+                </motion.li>
               ))}
             </ol>
           </Reveal>
@@ -75,10 +91,13 @@ export default function Heritage() {
 
         {/* Visual */}
         <Reveal delay={0.15} className="relative mx-auto w-full max-w-md lg:max-w-none">
+          {/* Arch echo */}
           <div
             className="absolute inset-0 -translate-x-5 translate-y-5 rounded-b-[2.5rem] rounded-t-[14rem] border-2 border-brass-500/40"
             aria-hidden="true"
           />
+
+          {/* Main image */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[14rem] shadow-[0_45px_90px_-30px_rgba(0,0,0,0.7)] ring-1 ring-cream-100/10">
             <Image
               src="/images/grill.jpg"
@@ -92,6 +111,8 @@ export default function Heritage() {
               aria-hidden="true"
             />
           </div>
+
+          {/* Seal badge */}
           <SealBadge
             text={`${t.brand.kings} ✦ ${t.brand.tagline} ✦ `}
             className="absolute -bottom-8 -start-3 size-28 text-brass-400 md:-start-8 md:size-36"

@@ -21,8 +21,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-cocoa-950 text-cream-100">
-      <Pattern className="pointer-events-none absolute inset-0 size-full text-cocoa-800 opacity-40" />
+    <footer
+      className="relative overflow-hidden bg-cocoa-950 text-cream-100"
+      role="contentinfo"
+    >
+      <Pattern className="pointer-events-none absolute inset-0 size-full text-cocoa-800 opacity-40" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}
@@ -49,59 +52,62 @@ export default function Footer() {
             <p className="max-w-sm text-sm leading-relaxed text-cream-200/70">
               {t.footer.about}
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3" role="list" aria-label="Social media links">
               <a
                 href={site.facebook}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Facebook"
+                aria-label="Facebook (opens in new tab)"
                 className="grid size-10 place-items-center rounded-full border border-cream-100/15 text-cream-200/80 transition-all duration-300 hover:-translate-y-1 hover:border-brass-500 hover:text-brass-400"
+                role="listitem"
               >
-                <FacebookIcon className="size-4" />
+                <FacebookIcon className="size-4" aria-hidden="true" />
               </a>
               <a
                 href={site.instagram}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Instagram"
+                aria-label="Instagram (opens in new tab)"
                 className="grid size-10 place-items-center rounded-full border border-cream-100/15 text-cream-200/80 transition-all duration-300 hover:-translate-y-1 hover:border-brass-500 hover:text-brass-400"
+                role="listitem"
               >
-                <InstagramIcon className="size-4" />
+                <InstagramIcon className="size-4" aria-hidden="true" />
               </a>
             </div>
           </div>
 
           {/* Links */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-display text-lg font-bold text-brass-400">
+          <nav className="flex flex-col gap-4" aria-label="Footer navigation">
+            <h2 className="font-display text-lg font-bold text-brass-400">
               {t.footer.links}
-            </h3>
-            <ul className="flex flex-col gap-2.5">
+            </h2>
+            <ul className="flex flex-col gap-2.5" role="list">
               {links.map((link) => (
-                <li key={link.href}>
+                <li key={link.href} role="listitem">
                   <Link
                     href={link.href}
-                    className="text-sm font-medium text-cream-200/70 transition-colors hover:text-brass-300"
+                    className="text-sm font-medium text-cream-200/70 transition-colors hover:text-brass-300 focus-visible:ring-2 focus-visible:ring-brass-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cocoa-950"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Branches */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-lg font-bold text-brass-400">
+            <h2 className="font-display text-lg font-bold text-brass-400">
               {t.footer.branchesTitle}
-            </h3>
-            <ul className="flex flex-col gap-3">
+            </h2>
+            <ul className="flex flex-col gap-3" role="list">
               {t.branches.list.map((branch) => (
                 <li
                   key={branch.name}
                   className="flex items-start gap-2 text-sm text-cream-200/70"
+                  role="listitem"
                 >
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-brass-500" />
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-brass-500" aria-hidden="true" />
                   <span>
                     <span className="block font-bold text-cream-100">
                       {branch.name}
@@ -115,15 +121,16 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-lg font-bold text-brass-400">
+            <h2 className="font-display text-lg font-bold text-brass-400">
               {t.footer.contact}
-            </h3>
+            </h2>
             <a
               href={`tel:${site.hotline}`}
               className="group flex items-center gap-3"
+              aria-label={`Call hotline ${site.hotlineDisplay}`}
             >
               <span className="grid size-11 place-items-center rounded-full bg-brass-500/15 text-brass-400 ring-1 ring-brass-500/40 transition-transform duration-300 group-hover:scale-110">
-                <Phone className="size-5" />
+                <Phone className="size-5" aria-hidden="true" />
               </span>
               <span className="flex flex-col">
                 <span className="text-xs text-cream-200/60">
@@ -138,13 +145,13 @@ export default function Footer() {
               </span>
             </a>
             <p className="flex items-center gap-2 text-sm text-cream-200/70">
-              <Clock className="size-4 shrink-0 text-brass-500" />
+              <Clock className="size-4 shrink-0 text-brass-500" aria-hidden="true" />
               {t.branches.hoursValue}
             </p>
           </div>
         </div>
 
-        <Ornament className="my-10 text-cream-100/40" />
+        <Ornament className="my-10 text-cream-100/40" aria-hidden="true" />
 
         <div className="flex flex-col items-center justify-between gap-3 text-xs text-cream-200/50 sm:flex-row">
           <p>

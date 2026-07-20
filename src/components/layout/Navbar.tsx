@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -22,6 +22,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Trap focus in mobile menu
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+      }
+    },
+    [open]
+  );
+
   const links = [
     { href: "/", label: t.nav.home },
     { href: "/about", label: t.nav.about },
@@ -36,9 +46,10 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream-50/90 shadow-[0_10px_40px_-18px_rgba(41,26,14,0.35)] backdrop-blur-xl"
+          ? "bg-cream-50/90 shadow-[var(--shadow-elevation-mid)] backdrop-blur-xl"
           : "bg-cream-50/60 backdrop-blur-md"
       } border-b border-cocoa-900/10`}
+      role="banner"
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand */}
@@ -64,11 +75,12 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className={`relative rounded-full px-4 py-2 text-sm font-bold transition-colors duration-300 ${
                 isActive(link.href)
                   ? "text-brass-700"
@@ -81,6 +93,7 @@ export default function Navbar() {
                   layoutId="nav-underline"
                   className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-brass-500"
                   transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  aria-hidden="true"
                 />
               )}
             </Link>
@@ -92,7 +105,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggle}
-            aria-label="Switch language"
+            aria-label={`Switch to ${lang === "ar" ? "English" : "Arabic"}`}
             className="relative flex items-center rounded-full border border-cocoa-900/15 bg-cream-100 p-1 text-xs font-extrabold"
           >
             {(["ar", "en"] as const).map((l) => (
@@ -111,15 +124,16 @@ export default function Navbar() {
                 insetInlineStart: lang === "ar" ? "4px" : "calc(50%)",
               }}
               transition={{ type: "spring", stiffness: 420, damping: 34 }}
+              aria-hidden="true"
             />
           </button>
 
           {/* Hotline */}
           <a
             href={`tel:${site.hotline}`}
-            className="hidden items-center gap-2 rounded-full bg-cocoa-800 px-5 py-2.5 text-sm font-extrabold text-cream-50 shadow-[0_10px_25px_-12px_rgba(41,26,14,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cocoa-700 sm:flex"
+            className="hidden items-center gap-2 rounded-full bg-cocoa-800 px-5 py-2.5 text-sm font-extrabold text-cream-50 shadow-[var(--shadow-elevation-low)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cocoa-700 hover:shadow-[var(--shadow-elevation-mid)] sm:flex"
           >
-            <Phone className="size-4 text-brass-400" />
+            <Phone className="size-4 text-brass-400" aria-hidden="true" />
             <span dir="ltr">{site.hotlineDisplay}</span>
           </a>
 
@@ -127,7 +141,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
             className="grid size-10 place-items-center rounded-full border border-cocoa-900/15 text-cocoa-800 lg:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -139,11 +155,15 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.nav
+            id="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden border-t border-cocoa-900/10 bg-cream-50/95 backdrop-blur-xl lg:hidden"
+            role="navigation"
+            aria-label="Mobile navigation"
+            onKeyDown={handleKeyDown}
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {links.map((link) => (
@@ -151,6 +171,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
+                  aria-current={isActive(link.href) ? "page" : undefined}
                   className={`rounded-xl px-4 py-3 text-base font-bold transition-colors ${
                     isActive(link.href)
                       ? "bg-cocoa-800 text-cream-50"
@@ -164,7 +185,7 @@ export default function Navbar() {
                 href={`tel:${site.hotline}`}
                 className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-cocoa-800 px-4 py-3 text-base font-extrabold text-cream-50"
               >
-                <Phone className="size-4 text-brass-400" />
+                <Phone className="size-4 text-brass-400" aria-hidden="true" />
                 {t.nav.call} — <span dir="ltr">{site.hotlineDisplay}</span>
               </a>
             </div>

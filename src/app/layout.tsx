@@ -59,9 +59,16 @@ export default function RootLayout({
       className={`${amiri.variable} ${tajawal.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream-50 text-cocoa-900 font-body">
+        {/* Skip link for keyboard users */}
+        <a href="#main-content" className="skip-link">
+          المحتوى الرئيسي
+        </a>
+
         <LanguageProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
           <WhatsAppFloat />
         </LanguageProvider>

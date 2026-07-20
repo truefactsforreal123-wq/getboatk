@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+import { useReducedMotion } from "framer-motion";
 import Khatam from "./Khatam";
 
 type SealBadgeProps = {
@@ -11,9 +12,14 @@ type SealBadgeProps = {
 /** Rotating circular brand seal — "Kings of Shawarma since 1982". */
 export default function SealBadge({ text, className = "" }: SealBadgeProps) {
   const id = useId();
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <div className={`relative ${className}`} aria-hidden="true">
-      <svg viewBox="0 0 100 100" className="size-full animate-rotate-slow">
+    <div className={`relative ${className}`} role="img" aria-label="Brand seal">
+      <svg
+        viewBox="0 0 100 100"
+        className={`size-full ${shouldReduceMotion ? "" : "animate-rotate-slow"}`}
+      >
         <defs>
           <path
             id={id}
@@ -25,7 +31,7 @@ export default function SealBadge({ text, className = "" }: SealBadgeProps) {
           <textPath href={`#${id}`}>{text}</textPath>
         </text>
       </svg>
-      <div className="absolute inset-0 grid place-items-center">
+      <div className="absolute inset-0 grid place-items-center" aria-hidden="true">
         <Khatam className="size-[22%]" />
       </div>
     </div>

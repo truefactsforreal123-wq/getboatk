@@ -7,6 +7,7 @@ type SectionHeadingProps = {
   subtitle?: string;
   align?: "center" | "start";
   tone?: "light" | "dark";
+  id?: string;
 };
 
 export default function SectionHeading({
@@ -15,6 +16,7 @@ export default function SectionHeading({
   subtitle,
   align = "center",
   tone = "light",
+  id,
 }: SectionHeadingProps) {
   const centered = align === "center";
   return (
@@ -27,22 +29,26 @@ export default function SectionHeading({
         className={`inline-flex items-center gap-2.5 text-sm font-bold tracking-wide ${
           tone === "light" ? "text-brass-600" : "text-brass-400"
         }`}
+        aria-hidden="true"
       >
         <Khatam className="size-3.5" />
         {kicker}
       </span>
       <h2
-        className={`font-display text-4xl md:text-5xl font-bold leading-[1.25] text-balance ${
+        id={id}
+        className={`font-display font-bold leading-[1.25] text-balance ${
           tone === "light" ? "text-cocoa-900" : "text-cream-50"
         }`}
+        style={{ fontSize: "var(--text-section)" }}
       >
         {title}
       </h2>
       {subtitle ? (
         <p
-          className={`max-w-2xl text-base md:text-lg leading-relaxed ${
+          className={`max-w-2xl leading-relaxed ${
             tone === "light" ? "text-cocoa-500" : "text-cream-200/80"
           }`}
+          style={{ fontSize: "var(--text-body)" }}
         >
           {subtitle}
         </p>

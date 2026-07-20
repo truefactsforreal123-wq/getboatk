@@ -1,3 +1,4 @@
+import { useReducedMotion } from "framer-motion";
 import Khatam from "./Khatam";
 
 /**
@@ -5,22 +6,27 @@ import Khatam from "./Khatam";
  * loop math stays correct under RTL pages; item text stays natural.
  */
 export default function Marquee({ items }: { items: readonly string[] }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div
       dir="ltr"
       className="overflow-hidden border-y border-cocoa-700/60 bg-cocoa-900 py-4"
-      aria-hidden="true"
+      role="marquee"
+      aria-label="Brand messages"
     >
-      <div className="flex w-max animate-marquee">
+      <div
+        className={`flex w-max ${shouldReduceMotion ? "" : "animate-marquee"}`}
+      >
         {[0, 1].map((copy) => (
-          <div key={copy} className="flex shrink-0 items-center">
+          <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1 ? "true" : undefined}>
             {items.map((item, i) => (
               <span
                 key={i}
-                className="flex items-center gap-8 whitespace-nowrap px-8 text-sm md:text-base font-medium tracking-wide text-cream-100"
+                className="flex items-center gap-8 whitespace-nowrap px-8 text-sm font-medium tracking-wide text-cream-100 md:text-base"
               >
                 {item}
-                <Khatam className="size-3 shrink-0 text-brass-500" />
+                <Khatam className="size-3 shrink-0 text-brass-500" aria-hidden="true" />
               </span>
             ))}
           </div>

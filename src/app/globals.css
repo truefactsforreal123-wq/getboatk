@@ -27,44 +27,28 @@
   --font-display: var(--font-amiri), "Amiri", serif;
   --font-body: var(--font-tajawal), "Tajawal", sans-serif;
 
+  /* ── Fluid Typography ── */
+  --text-hero: clamp(2.5rem, 1rem + 4vw, 4.5rem);
+  --text-section: clamp(1.75rem, 0.5rem + 2.5vw, 3rem);
+  --text-card: clamp(1.25rem, 0.25rem + 1vw, 1.5rem);
+  --text-body: clamp(1rem, 0.25rem + 0.3vw, 1.125rem);
+
+  /* ── Shadows ── */
+  --shadow-elevation-low: 0 4px 12px rgba(27, 15, 7, 0.15);
+  --shadow-elevation-mid: 0 12px 32px rgba(27, 15, 7, 0.25);
+  --shadow-elevation-high: 0 24px 64px rgba(27, 15, 7, 0.35);
+  --shadow-glow-brass: 0 0 40px rgba(200, 155, 60, 0.3);
+
   /* ── Motion ── */
   --animate-marquee: marquee 42s linear infinite;
   --animate-rotate-slow: rotate-slow 18s linear infinite;
-  --animate-float: float 6.5s ease-in-out infinite;
-  --animate-float-delayed: float 7.5s ease-in-out 1.4s infinite;
-  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
   @keyframes rotate-slow {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-14px);
-    }
-  }
-  @keyframes pulse-ring {
-    0% {
-      transform: scale(1);
-      opacity: 0.5;
-    }
-    100% {
-      transform: scale(1.9);
-      opacity: 0;
-    }
+    to { transform: rotate(360deg); }
   }
 }
 
@@ -83,18 +67,49 @@ body {
   color: var(--color-cocoa-900);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Respect users who prefer less motion (and save battery on phones) */
+/* ── Focus States (Accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--color-brass-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 1rem;
+  background: var(--color-cocoa-900);
+  color: var(--color-cream-50);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── Gradient Text Utility ── */
+.text-gradient-brass {
+  background: linear-gradient(135deg, var(--color-brass-600), var(--color-brass-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .animate-marquee,
-  .animate-rotate-slow,
-  .animate-float,
-  .animate-float-delayed,
-  .animate-pulse-ring {
+  .animate-rotate-slow {
     animation: none;
   }
 }

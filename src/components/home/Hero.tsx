@@ -35,12 +35,15 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-cream-50">
-      <Pattern className="pointer-events-none absolute inset-0 size-full text-cocoa-300 opacity-[0.35]" />
-      <div
-        className="pointer-events-none absolute -top-32 start-1/4 size-[480px] rounded-full bg-brass-300/30 blur-[140px]"
-        aria-hidden="true"
-      />
+    <section
+      className="relative overflow-hidden bg-cream-50"
+      aria-labelledby="hero-heading"
+    >
+      {/* Background pattern */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Pattern className="size-full text-cocoa-300 opacity-[0.35]" />
+        <div className="absolute -top-32 start-1/4 size-[480px] rounded-full bg-brass-300/30 blur-[100px] max-md:blur-[60px]" />
+      </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-14 px-4 pb-20 pt-32 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-10 lg:px-8 lg:pb-28 lg:pt-40">
         {/* Copy */}
@@ -54,16 +57,18 @@ export default function Hero() {
             variants={item}
             className="inline-flex items-center gap-2.5 rounded-full border border-brass-500/50 bg-brass-200/40 px-4 py-1.5 text-sm font-bold text-brass-700"
           >
-            <Khatam className="size-3.5" />
+            <Khatam className="size-3.5" aria-hidden="true" />
             {t.hero.kicker}
           </motion.span>
 
           <motion.h1
+            id="hero-heading"
             variants={item}
-            className="font-display text-4xl font-bold leading-[1.35] text-cocoa-900 sm:text-6xl xl:text-7xl"
+            className="font-display font-bold leading-[1.35] text-cocoa-900"
+            style={{ fontSize: "var(--text-hero)" }}
           >
             {t.hero.titleA}{" "}
-            <span className="bg-gradient-to-l from-brass-600 via-brass-500 to-brass-400 bg-clip-text text-transparent">
+            <span className="text-gradient-brass">
               {t.hero.titleB}
             </span>{" "}
             {t.hero.titleC}
@@ -71,7 +76,8 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="max-w-xl text-lg leading-relaxed text-cocoa-500"
+            className="max-w-xl leading-relaxed text-cocoa-500"
+            style={{ fontSize: "var(--text-body)" }}
           >
             {t.hero.subtitle}
           </motion.p>
@@ -79,16 +85,16 @@ export default function Hero() {
           <motion.div variants={item} className="flex flex-wrap items-center gap-4">
             <Link
               href="/menu"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-cocoa-800 px-7 py-3.5 text-base font-extrabold text-cream-50 shadow-[0_18px_35px_-15px_rgba(41,26,14,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cocoa-700"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-cocoa-800 px-7 py-3.5 text-base font-extrabold text-cream-50 shadow-[var(--shadow-elevation-mid)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cocoa-700 hover:shadow-[var(--shadow-elevation-high)]"
             >
               {t.hero.ctaMenu}
-              <Arrow className="size-5 text-brass-400 transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1" />
+              <Arrow className="size-5 text-brass-400 transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1" aria-hidden="true" />
             </Link>
             <a
               href={`tel:${site.hotline}`}
               className="inline-flex items-center gap-2.5 rounded-full border-2 border-cocoa-800/20 bg-cream-50/60 px-7 py-3 text-base font-extrabold text-cocoa-800 transition-all duration-300 hover:-translate-y-0.5 hover:border-brass-500 hover:text-brass-700"
             >
-              <Phone className="size-5" />
+              <Phone className="size-5" aria-hidden="true" />
               <span dir="ltr">{site.hotlineDisplay}</span>
             </a>
           </motion.div>
@@ -125,7 +131,9 @@ export default function Hero() {
             className="absolute inset-0 translate-x-5 translate-y-5 rounded-b-[2.5rem] rounded-t-[14rem] border-2 border-brass-500/50"
             aria-hidden="true"
           />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[14rem] shadow-[0_45px_80px_-30px_rgba(41,26,14,0.5)] ring-1 ring-cocoa-900/10">
+
+          {/* Main image container */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[14rem] shadow-[var(--shadow-elevation-high)] ring-1 ring-cocoa-900/10">
             <Image
               src="/images/wrap.jpg"
               alt={t.hero.floatCard}
@@ -147,10 +155,10 @@ export default function Hero() {
           />
 
           {/* Floating card */}
-          <div className="absolute -bottom-7 -end-3 animate-float md:-end-8">
-            <div className="flex items-center gap-3 rounded-2xl border border-cocoa-900/10 bg-cream-50/95 px-5 py-4 shadow-[0_25px_50px_-20px_rgba(41,26,14,0.45)] backdrop-blur">
+          <div className="absolute -bottom-7 -end-3 md:-end-8">
+            <div className="flex items-center gap-3 rounded-2xl border border-cocoa-900/10 bg-cream-50/95 px-5 py-4 shadow-[var(--shadow-elevation-mid)]">
               <span className="grid size-11 place-items-center rounded-full bg-cocoa-800 text-brass-400">
-                <Flame className="size-5" />
+                <Flame className="size-5" aria-hidden="true" />
               </span>
               <span className="flex flex-col leading-tight">
                 <span className="text-sm font-extrabold text-cocoa-900">
