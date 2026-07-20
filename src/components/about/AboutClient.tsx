@@ -57,10 +57,10 @@ export default function AboutClient() {
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8">
           <Reveal className="relative order-2 mx-auto w-full max-w-md lg:order-1 lg:max-w-none">
             <div
-              className="absolute inset-0 translate-x-5 translate-y-5 rounded-b-[2.5rem] rounded-t-[12rem] border-2 border-brass-500/50"
+              className="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-brass-500/50"
               aria-hidden="true"
             />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[12rem] shadow-[0_45px_80px_-30px_rgba(41,26,14,0.5)] ring-1 ring-cocoa-900/10">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-[0_45px_80px_-30px_rgba(41,26,14,0.5)] ring-1 ring-cocoa-900/10">
               <Image
                 src="/images/interior.jpg"
                 alt={t.brand.name}

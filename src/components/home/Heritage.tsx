@@ -93,12 +93,12 @@ export default function Heritage() {
         <Reveal delay={0.15} className="relative mx-auto w-full max-w-md lg:max-w-none">
           {/* Arch echo */}
           <div
-            className="absolute inset-0 -translate-x-5 translate-y-5 rounded-b-[2.5rem] rounded-t-[14rem] border-2 border-brass-500/40"
+            className="absolute inset-0 -translate-x-4 translate-y-4 rounded-[2rem] border-2 border-brass-500/40"
             aria-hidden="true"
           />
 
           {/* Main image */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[14rem] shadow-[0_45px_90px_-30px_rgba(0,0,0,0.7)] ring-1 ring-cream-100/10">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-[0_45px_90px_-30px_rgba(0,0,0,0.7)] ring-1 ring-cream-100/10">
             <Image
               src="/images/grill.jpg"
               alt={t.heritage.kicker}

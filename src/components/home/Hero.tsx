@@ -128,12 +128,12 @@ export default function Hero() {
         >
           {/* Arch echo */}
           <div
-            className="absolute inset-0 translate-x-5 translate-y-5 rounded-b-[2.5rem] rounded-t-[14rem] border-2 border-brass-500/50"
+            className="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-brass-500/50"
             aria-hidden="true"
           />
 
           {/* Main image container */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2.5rem] rounded-t-[14rem] shadow-[var(--shadow-elevation-high)] ring-1 ring-cocoa-900/10">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-[var(--shadow-elevation-high)] ring-1 ring-cocoa-900/10">
             <Image
               src="/images/wrap.jpg"
               alt={t.hero.floatCard}
