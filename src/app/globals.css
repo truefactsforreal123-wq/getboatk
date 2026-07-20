@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* ── Brand palette: Damascene cream, dark cocoa wood, brass ── */
+  --color-cream-50: #fbf7ed;
+  --color-cream-100: #f5edd9;
+  --color-cream-200: #ebdfc2;
+  --color-cream-300: #decca4;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-cocoa-950: #1b0f07;
+  --color-cocoa-900: #291a0e;
+  --color-cocoa-800: #3a2313;
+  --color-cocoa-700: #4e301b;
+  --color-cocoa-600: #684324;
+  --color-cocoa-500: #825733;
+  --color-cocoa-400: #a07553;
+  --color-cocoa-300: #be9b7c;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-brass-700: #94691e;
+  --color-brass-600: #b08226;
+  --color-brass-500: #c89b3c;
+  --color-brass-400: #dab55f;
+  --color-brass-300: #e9ce8e;
+  --color-brass-200: #f5e5be;
+
+  /* ── Typography ── */
+  --font-display: var(--font-amiri), "Amiri", serif;
+  --font-body: var(--font-tajawal), "Tajawal", sans-serif;
+
+  /* ── Motion ── */
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-rotate-slow: rotate-slow 18s linear infinite;
+  --animate-float: float 6.5s ease-in-out infinite;
+  --animate-float-delayed: float 7.5s ease-in-out 1.4s infinite;
+  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes rotate-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.9);
+      opacity: 0;
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-cream-50);
+  color: var(--color-cocoa-900);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect users who prefer less motion (and save battery on phones) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-rotate-slow,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-pulse-ring {
+    animation: none;
+  }
+}
+
+::selection {
+  background: var(--color-brass-300);
+  color: var(--color-cocoa-900);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-cocoa-400);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cocoa-500);
 }
