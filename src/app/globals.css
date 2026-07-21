@@ -54,6 +54,9 @@
   /* ── Motion ── */
   --animate-marquee: marquee 42s linear infinite;
   --animate-rotate-slow: rotate-slow 18s linear infinite;
+  --animate-kenburns-1: kenburns-1 20s ease-in-out infinite alternate;
+  --animate-kenburns-2: kenburns-2 22s ease-in-out infinite alternate;
+  --animate-kenburns-3: kenburns-3 24s ease-in-out infinite alternate;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -61,6 +64,18 @@
   }
   @keyframes rotate-slow {
     to { transform: rotate(360deg); }
+  }
+  @keyframes kenburns-1 {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.12) translate(-2%, -1%); }
+  }
+  @keyframes kenburns-2 {
+    0% { transform: scale(1.08) translate(-1%, 1%); }
+    100% { transform: scale(1) translate(1%, -1%); }
+  }
+  @keyframes kenburns-3 {
+    0% { transform: scale(1) translate(1%, 0); }
+    100% { transform: scale(1.1) translate(-1%, -2%); }
   }
 }
 

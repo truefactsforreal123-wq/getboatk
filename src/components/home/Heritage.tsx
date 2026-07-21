@@ -104,7 +104,7 @@ export default function Heritage() {
               alt={t.heritage.kicker}
               fill
               sizes="(min-width: 1024px) 512px, 100vw"
-              className="object-cover"
+              className="object-cover animate-[kenburns-2_22s_ease-in-out_infinite_alternate]"
             />
             <div
               className="absolute inset-0 bg-gradient-to-t from-cocoa-950/45 via-transparent to-transparent"

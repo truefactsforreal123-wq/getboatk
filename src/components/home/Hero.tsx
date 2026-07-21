@@ -140,7 +140,7 @@ export default function Hero() {
               fill
               priority
               sizes="(min-width: 1024px) 512px, 100vw"
-              className="object-cover"
+              className="object-cover animate-[kenburns-1_20s_ease-in-out_infinite_alternate]"
             />
             <div
               className="absolute inset-0 bg-gradient-to-t from-cocoa-950/25 via-transparent to-transparent"

@@ -169,7 +169,8 @@ export default async function PrintQRCodesPage({
         </div>
 
         <div className="header">
-          <h1>{branchName}</h1>
+          <h1>جيت بوتك — Get Boat Keg</h1>
+          <h2 style={{ fontSize: '14px', color: '#666', fontWeight: 600, marginTop: 4 }}>{branchName}</h2>
           <p>{tables.length} {t.tablesCount}</p>
         </div>
 

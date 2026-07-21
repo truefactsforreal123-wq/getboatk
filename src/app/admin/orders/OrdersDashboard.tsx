@@ -226,7 +226,7 @@ export function OrdersDashboard({
             onClick={() => setTab("active")}
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "active"
-                ? "bg-brand-500/15 text-gold-300"
+                ? "bg-brand-500/15 text-brass-400"
                 : "text-cream hover:text-cream"
             }`}
           >
@@ -237,7 +237,7 @@ export function OrdersDashboard({
             onClick={() => setTab("history")}
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "history"
-                ? "bg-brand-500/15 text-gold-300"
+                ? "bg-brand-500/15 text-brass-400"
                 : "text-cream hover:text-cream"
             }`}
           >
@@ -248,7 +248,7 @@ export function OrdersDashboard({
             onClick={() => { setTab("summary"); setSummaryLoading(true); }}
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "summary"
-                ? "bg-brand-500/15 text-gold-300"
+                ? "bg-brand-500/15 text-brass-400"
                 : "text-cream hover:text-cream"
             }`}
           >
@@ -263,7 +263,7 @@ export function OrdersDashboard({
               <select
                 value={branchFilter}
                 onChange={(e) => setBranchFilter(e.target.value)}
-                className="rounded-lg border border-white/10 bg-ink-900 px-3 py-2.5 text-sm font-bold text-cream"
+                className="rounded-lg border border-brass-500/10 bg-cocoa-900 px-3 py-2.5 text-sm font-bold text-cream"
               >
                 <option value="all">{t.allBranches}</option>
                 {branches.map(([id, b]) => (
@@ -279,7 +279,7 @@ export function OrdersDashboard({
       {tab === "active" && (
         <div className="mt-6">
           {Object.keys(groupedActive).length === 0 && (
-            <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+            <div className="rounded-xl border border-dashed border-brass-500/15 p-12 text-center">
               <p className="text-cream text-base font-bold">{t.noActiveOrders}</p>
               <p className="mt-1 text-sm text-cream">{t.newOrdersAppear}</p>
             </div>
@@ -302,7 +302,7 @@ export function OrdersDashboard({
                     return (
                       <div
                         key={order.id}
-                        className="rounded-xl border border-white/15 bg-ink-900 p-4"
+                        className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-4"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-2">
@@ -311,7 +311,7 @@ export function OrdersDashboard({
                               {getTimeAgo(order.submittedAt)}
                             </span>
                           </div>
-                          <span className="text-xl font-black text-gold-300">
+                          <span className="text-xl font-black text-brass-400">
                             {order.items.reduce((s, i) => s + Number(i.priceAtOrder), 0)} LE
                           </span>
                         </div>
@@ -389,7 +389,7 @@ export function OrdersDashboard({
                             <button
                               onClick={() => handleAction(order.id, () => markOrderServed(order.id))}
                               disabled={acting === order.id}
-                              className="flex items-center gap-1.5 rounded-lg bg-gold-500/10 px-3 py-2 text-sm font-bold text-gold-300 hover:bg-gold-500/20 transition-colors disabled:opacity-40 min-h-[44px]"
+                              className="flex items-center gap-1.5 rounded-lg bg-brass-500/10 px-3 py-2 text-sm font-bold text-brass-400 hover:bg-brass-500/20 transition-colors disabled:opacity-40 min-h-[44px]"
                             >
                               <CheckCircle2 size={16} />
                               {acting === order.id ? "..." : t.served}
@@ -416,7 +416,7 @@ export function OrdersDashboard({
       {tab === "history" && (
         <div className="mt-6">
           {filteredServed.length === 0 && (
-            <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+            <div className="rounded-xl border border-dashed border-brass-500/15 p-12 text-center">
               <p className="text-cream text-base font-bold">{t.noServedOrders}</p>
               <p className="mt-1 text-sm text-cream">
                 {t.served}... {historyTTL} {lang === "ar" ? "ساعة" : "hours"}
@@ -483,7 +483,7 @@ export function OrdersDashboard({
               value={summaryDate}
               max={todayStr}
               onChange={(e) => { setSummaryDate(e.target.value); setSummaryLoading(true); }}
-              className="rounded-lg border border-white/10 bg-ink-900 px-4 py-2.5 text-base font-bold text-cream"
+              className="rounded-lg border border-brass-500/10 bg-cocoa-900 px-4 py-2.5 text-base font-bold text-cream"
             />
             {summaryDate === todayStr ? (
               <span className="rounded-lg bg-green-500/15 px-3 py-1.5 text-sm font-bold text-green-400">
@@ -500,26 +500,26 @@ export function OrdersDashboard({
           </div>
 
           {summaryLoading ? (
-            <div className="rounded-xl border border-white/15 bg-ink-900 p-12 text-center">
+            <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-12 text-center">
               <p className="text-base text-cream">{lang === "ar" ? "جارٍ التحميل..." : "Loading..."}</p>
             </div>
           ) : summaryData ? (
             <>
               {/* Stats Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                   <p className="text-sm text-cream uppercase">{lang === "ar" ? "الطلبات" : "Orders"}</p>
                   <p className="text-4xl font-black text-cream mt-1">{summaryData.totalOrders}</p>
                 </div>
-                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                   <p className="text-sm text-cream uppercase">{lang === "ar" ? "الإيرادات" : "Revenue"}</p>
-                  <p className="text-4xl font-black text-gold-300 mt-1">{summaryData.totalRevenue} <span className="text-lg">LE</span></p>
+                  <p className="text-4xl font-black text-brass-400 mt-1">{summaryData.totalRevenue} <span className="text-lg">LE</span></p>
                 </div>
-                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                   <p className="text-sm text-cream uppercase">{lang === "ar" ? "الأصناف المباعة" : "Items Sold"}</p>
                   <p className="text-4xl font-black text-cream mt-1">{summaryData.itemsSold}</p>
                 </div>
-                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                   <p className="text-sm text-cream uppercase">{lang === "ar" ? "متوسط الطلب" : "Avg Order"}</p>
                   <p className="text-4xl font-black text-cream mt-1">
                     {summaryData.totalOrders > 0 ? Math.round(summaryData.totalRevenue / summaryData.totalOrders) : 0} <span className="text-lg">LE</span>
@@ -530,7 +530,7 @@ export function OrdersDashboard({
               <div className="grid gap-6 sm:grid-cols-2">
                 {/* Top Items */}
                 {summaryData.topItems.length > 0 && (
-                  <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                     <h3 className="text-base font-black text-cream uppercase mb-4">
                       {lang === "ar" ? "الأكثر مبيعًا" : "Top Selling Items"}
                     </h3>
@@ -543,7 +543,7 @@ export function OrdersDashboard({
                           </div>
                           <div className="flex items-center gap-4">
                             <span className="text-sm text-cream">×{item.quantity}</span>
-                            <span className="text-base font-bold text-gold-300">{item.revenue} LE</span>
+                            <span className="text-base font-bold text-brass-400">{item.revenue} LE</span>
                           </div>
                         </div>
                       ))}
@@ -553,7 +553,7 @@ export function OrdersDashboard({
 
                 {/* Branch Stats */}
                 {summaryData.branchStats.length > 0 && (
-                  <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <div className="rounded-xl border border-brass-500/15 bg-cocoa-900 p-5">
                     <h3 className="text-base font-black text-cream uppercase mb-4">
                       {lang === "ar" ? "الطلبات حسب الفرع" : "Orders by Branch"}
                     </h3>
@@ -563,7 +563,7 @@ export function OrdersDashboard({
                           <span className="text-base font-bold text-cream">{lang === "ar" ? branch.nameAr : branch.nameEn}</span>
                           <div className="flex items-center gap-4">
                             <span className="text-sm text-cream">{branch.count} {lang === "ar" ? "طلب" : "orders"}</span>
-                            <span className="text-base font-bold text-gold-300">{branch.revenue} LE</span>
+                            <span className="text-base font-bold text-brass-400">{branch.revenue} LE</span>
                           </div>
                         </div>
                       ))}
@@ -573,7 +573,7 @@ export function OrdersDashboard({
               </div>
 
               {summaryData.totalOrders === 0 && (
-                <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+                <div className="rounded-xl border border-dashed border-brass-500/15 p-12 text-center">
                   <p className="text-cream text-base font-bold">
                     {lang === "ar" ? "لا توجد طلبات في هذا اليوم" : "No orders on this day"}
                   </p>

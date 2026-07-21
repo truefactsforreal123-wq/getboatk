@@ -38,7 +38,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
           <select
             value={branchFilter}
             onChange={(e) => setBranchFilter(e.target.value)}
-            className="rounded-lg border border-white/10 bg-ink-900 px-4 py-2 text-sm font-bold text-cream"
+            className="rounded-lg border border-brass-500/15 bg-cocoa-900 px-4 py-2 text-sm font-bold text-cream"
           >
             <option value="all">{t.allBranches}</option>
             {branches.map((b) => (
@@ -50,17 +50,17 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
       )}
 
       {filtered.map((r) => (
-        <div key={r.id} className={`rounded-xl border p-5 overflow-hidden ${r.approved ? "border-white/8 bg-ink-900" : "border-gold-400/25 bg-gold-500/5"}`}>
+        <div key={r.id} className={`rounded-xl border p-5 overflow-hidden ${r.approved ? "border-brass-500/10 bg-cocoa-900" : "border-brass-500/20 bg-brass-500/5"}`}>
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-black text-cream">{r.name}</span>
                 {r.branch && <span className="rounded bg-brand-500/10 px-2 py-0.5 text-[10px] font-black text-brand-300">{r.branch.nameAr}</span>}
-                {!r.approved && <span className="rounded bg-gold-200/20 px-2 py-0.5 text-[10px] font-black text-gold-300">{t.pending}</span>}
+                {!r.approved && <span className="rounded bg-brass-500/15 px-2 py-0.5 text-[10px] font-black text-brass-400">{t.pending}</span>}
               </div>
               <div className="mt-1 flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} fill={i < r.rating ? "#F5B942" : "none"} className={i < r.rating ? "text-gold-300" : "text-ink-700"} />
+                  <Star key={i} size={14} fill={i < r.rating ? "#F5B942" : "none"} className={i < r.rating ? "text-brass-400" : "text-cocoa-700"} />
                 ))}
               </div>
               <p className="mt-2 text-sm leading-6 text-cream break-all">{r.text}</p>

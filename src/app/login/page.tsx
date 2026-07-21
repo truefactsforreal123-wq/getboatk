@@ -57,7 +57,7 @@ export default function AdminLogin() {
           {/* Title */}
           <div className="mt-6 text-center">
             <h1 className="text-[22px] font-bold tracking-tight text-cream">{t.adminPanel}</h1>
-            <p className="mt-1.5 text-[13px] font-medium text-cream">جيت بوتك — إدارة</p>
+            <p className="mt-1.5 text-[13px] font-medium text-brass-400/70">جيت بوتك — ملوك الشاورما منذ ١٩٨٢</p>
           </div>
 
           {/* Form */}

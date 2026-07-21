@@ -66,7 +66,7 @@ export default function AboutClient() {
                 alt={t.brand.name}
                 fill
                 sizes="(min-width: 1024px) 512px, 100vw"
-                className="object-cover"
+                className="object-cover animate-[kenburns-3_24s_ease-in-out_infinite_alternate]"
               />
               <div
                 className="absolute inset-0 bg-gradient-to-t from-cocoa-950/30 via-transparent to-transparent"

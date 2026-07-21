@@ -31,7 +31,7 @@ export default async function AdminOrdersPage() {
   for (const s of settings) settingsMap[s.key] = s.value;
 
   return (
-    <div className="flex min-h-screen bg-ink-950">
+    <div className="flex min-h-screen bg-cocoa-950">
       <Sidebar />
       <div className="flex-1 p-4 pt-16 lg:p-10 lg:pt-10">
         <OrdersDashboard

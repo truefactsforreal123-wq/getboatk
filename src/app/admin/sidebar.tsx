@@ -56,18 +56,18 @@ export function Sidebar() {
   const navContent = (
     <>
       {/* Brand header */}
-      <div className="flex items-center gap-3 px-5 pb-6 pt-6">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-cocoa-800/80 ring-1 ring-white/[0.1]">
-          <Image src="/logo.jpg" alt="" width={32} height={32} className="rounded-lg" />
+      <div className="flex items-center gap-3 px-5 pb-5 pt-6">
+        <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-cocoa-800/80 ring-1 ring-brass-500/20">
+          <Image src="/logo.jpg" alt="" width={36} height={36} className="rounded-lg" />
         </div>
         <div className="flex flex-col">
-          <span className="text-[13px] font-bold text-cream">{ta.adminPanel}</span>
-          <span className="text-[11px] font-medium text-cream">جيت بوتك</span>
+          <span className="font-display text-[15px] font-bold text-cream">{ta.adminPanel}</span>
+          <span className="text-[11px] font-medium text-brass-400/70">جيت بوتك — ملوك الشاورما منذ ١٩٨٢</span>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="mx-4 h-px bg-white/[0.08]" />
+      <div className="mx-4 h-px bg-gradient-to-l from-brass-500/20 via-white/[0.06] to-transparent" />
 
       {/* Navigation */}
       <nav className="flex-1 space-y-0.5 px-3 py-4">
@@ -86,7 +86,7 @@ export function Sidebar() {
 
       {/* Bottom actions */}
       <div className="px-3 pb-4">
-        <div className="mx-1 mb-3 h-px bg-white/[0.08]" />
+        <div className="mx-1 mb-3 h-px bg-gradient-to-l from-brass-500/15 via-white/[0.06] to-transparent" />
         <div className="space-y-0.5">
           <button
             onClick={toggleLang}
