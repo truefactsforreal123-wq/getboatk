@@ -6,7 +6,6 @@ import { unlockOrderAlertAudio } from "@/lib/order-alert-audio";
 export function OrderAlertAudioUnlock() {
   useEffect(() => {
     const unlock = () => {
-      console.log("[AudioUnlock] User gesture detected, unlocking...");
       void unlockOrderAlertAudio();
     };
 

@@ -109,15 +109,12 @@ export function UnseenOrdersProvider({
         { event: "INSERT", schema: "public", table: "Order" },
         (payload) => {
           const order = payload.new as OrderAlert & { status?: string };
-          console.log("[Realtime] INSERT received:", order.id, "status:", order.status, "sound:", soundEnabledRef.current);
           if (order.status === "submitted" && registerOrder(order) && soundEnabledRef.current) {
             void playOrderAlertSound();
           }
         },
       )
-      .subscribe((status) => {
-        console.log("[Realtime] Channel status:", status);
-      });
+      .subscribe();
 
     let polling = false;
     const poll = async () => {
@@ -125,9 +122,6 @@ export function UnseenOrdersProvider({
       polling = true;
       try {
         const orders = await getNewOrderAlerts(cursorRef.current);
-        if (orders.length > 0) {
-          console.log("[Polling] Found", orders.length, "new orders:", orders.map((o) => o.id));
-        }
         let hasNewSessionOrder = false;
         for (const order of orders) {
           if (registerOrder(order) && order.submittedAt >= sessionStartedAtRef.current) {
