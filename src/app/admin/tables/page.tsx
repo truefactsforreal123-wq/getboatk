@@ -18,7 +18,7 @@ export default async function AdminTablesPage() {
       <div className="flex-1 p-4 pt-16 lg:p-10 lg:pt-10">
         <div>
           <h1 className="text-2xl font-black text-cream"><T k="tablesTitle" /></h1>
-          <p className="mt-1 text-sm text-cream/45">
+          <p className="mt-1 text-sm text-cream/60">
             {tables.length} <T k="tables" /> <T k="inWord" /> {branches.length} <T k="branches" />
           </p>
         </div>

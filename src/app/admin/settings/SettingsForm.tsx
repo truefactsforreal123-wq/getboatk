@@ -38,7 +38,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
 
   return (
     <div className="mt-8 max-w-lg space-y-6">
-      <div className="rounded-xl border border-white/8 bg-ink-900 p-6">
+      <div className="rounded-xl border border-white/15 bg-ink-900 p-6">
         <label className="text-base font-black text-cream">{t.liveTracking}</label>
         <p className="mt-2 text-sm text-cream/60">
           {t.liveTrackingDesc}
@@ -53,7 +53,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
             className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-colors ${
               liveTracking
                 ? "bg-green-500/15 text-green-400"
-                : "bg-white/5 text-cream/35"
+                : "bg-white/5 text-cream/55"
             }`}
           >
             {liveTracking ? t.on : t.off}
@@ -61,7 +61,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/8 bg-ink-900 p-6">
+      <div className="rounded-xl border border-white/15 bg-ink-900 p-6">
         <label className="text-base font-black text-cream">{t.soundAlerts}</label>
         <p className="mt-2 text-sm text-cream/60">
           {t.soundAlertsDesc}
@@ -78,7 +78,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
             className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-colors ${
               soundAlerts
                 ? "bg-green-500/15 text-green-400"
-                : "bg-white/5 text-cream/35"
+                : "bg-white/5 text-cream/55"
             }`}
           >
             {soundAlerts ? t.on : t.off}

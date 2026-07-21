@@ -53,7 +53,7 @@ export function Sidebar() {
 
   const navContent = (
     <>
-      <div className="flex items-center gap-3 border-b border-white/8 px-5 py-5">
+      <div className="flex items-center gap-3 border-b border-white/15 px-5 py-5">
         <Image src="/logo.jpg" alt="" width={40} height={40} className="rounded-full" />
         <span className="text-sm font-black text-cream">{ta.adminPanel}</span>
       </div>
@@ -70,16 +70,16 @@ export function Sidebar() {
           </Link>
         ))}
       </nav>
-      <div className="border-t border-white/8 p-3">
-        <button onClick={toggleLang} className="mb-1 flex w-full min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/45 hover:bg-white/5 hover:text-cream">
+      <div className="border-t border-white/15 p-3">
+        <button onClick={toggleLang} className="mb-1 flex w-full min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/70 hover:bg-white/5 hover:text-cream">
           <Languages size={18} />
           {ta.language}
         </button>
-        <a href="/" target="_blank" className="mb-1 flex min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/45 hover:bg-white/5 hover:text-cream">
+        <a href="/" target="_blank" className="mb-1 flex min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/70 hover:bg-white/5 hover:text-cream">
           <Flame size={18} />
           {ta.viewSite}
         </a>
-        <button onClick={() => signOut()} className="flex w-full min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/45 hover:bg-white/5 hover:text-cream">
+        <button onClick={() => signOut()} className="flex w-full min-h-10 items-center gap-3 rounded-lg px-3 text-sm font-bold text-cream/70 hover:bg-white/5 hover:text-cream">
           <LogOut size={18} />
           {ta.signOut}
         </button>
@@ -104,12 +104,12 @@ export function Sidebar() {
         />
       )}
 
-      <aside className="hidden lg:flex w-64 flex-col border-e border-white/8 bg-ink-900 shrink-0">
+      <aside className="hidden lg:flex w-64 flex-col border-e border-white/15 bg-ink-900 shrink-0">
         {navContent}
       </aside>
 
       <aside
-        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col bg-ink-900 border-e border-white/8 transition-transform duration-200 lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col bg-ink-900 border-e border-white/15 transition-transform duration-200 lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >

@@ -17,7 +17,7 @@ export default async function AdminReviews() {
       <Sidebar />
       <main className="flex-1 p-4 pt-16 lg:p-8 lg:pt-8">
         <h1 className="text-2xl font-black text-cream"><T k="reviewsTitle" /></h1>
-        <p className="mt-1 text-sm text-cream/45">
+        <p className="mt-1 text-sm text-cream/60">
           {reviews.filter((r) => r.approved).length} <T k="approved" />, {reviews.filter((r) => !r.approved).length} <T k="pending" />
         </p>
         <ReviewsEditor reviews={reviews} branches={branches} />

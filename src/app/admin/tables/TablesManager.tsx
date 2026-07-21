@@ -82,8 +82,8 @@ export function TablesManager({
   return (
     <div className="mt-8 space-y-5">
       {branches.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-white/10 bg-ink-900 p-12 text-center">
-          <p className="text-base font-bold text-cream/35">{t.noBranches}</p>
+        <div className="rounded-xl border border-dashed border-white/15 bg-ink-900 p-12 text-center">
+          <p className="text-base font-bold text-cream/60">{t.noBranches}</p>
           <p className="mt-1 text-sm text-cream/25">{t.goToBranches}</p>
           <a href="/admin/branches" className="mt-4 inline-flex brand-button text-sm">{t.goToBranches}</a>
         </div>
@@ -94,7 +94,7 @@ export function TablesManager({
         <select
           value={selectedBranch}
           onChange={(e) => setSelectedBranch(Number(e.target.value))}
-          className="rounded-lg border border-white/10 bg-ink-900 px-4 py-2.5 text-sm font-bold text-cream"
+          className="rounded-lg border border-dashed border-white/15 bg-ink-900 px-4 py-2.5 text-sm font-bold text-cream"
         >
           {branches.map((b) => (
             <option key={b.id} value={b.id}>{b.nameEn}</option>
@@ -134,7 +134,7 @@ export function TablesManager({
 
       {/* Add Table Panel */}
       {showAdd && (
-        <div className="rounded-xl border border-white/8 bg-ink-900 p-5 space-y-4">
+        <div className="rounded-xl border border-white/15 bg-ink-900 p-5 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-black text-cream">
               {lang === "ar" ? `إضافة لـ ${activeBranch?.nameAr}` : `Add to ${activeBranch?.nameEn}`}
@@ -149,7 +149,7 @@ export function TablesManager({
             <button
               onClick={() => setAddMode("single")}
               className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
-                addMode === "single" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream/40"
+                addMode === "single" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream/65"
               }`}
             >
               {lang === "ar" ? "طاولة واحدة" : "Single Table"}
@@ -157,7 +157,7 @@ export function TablesManager({
             <button
               onClick={() => setAddMode("batch")}
               className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
-                addMode === "batch" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream/40"
+                addMode === "batch" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream/65"
               }`}
             >
               {lang === "ar" ? "عدة طاولات" : "Multiple Tables"}
@@ -175,7 +175,7 @@ export function TablesManager({
                 value={newTableNum}
                 onChange={(e) => setNewTableNum(e.target.value)}
                 placeholder={String(nextTableNum)}
-                className="w-28 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                className="w-28 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
               />
               <button onClick={handleCreate} className="brand-button text-sm">
                 {t.create}
@@ -184,7 +184,7 @@ export function TablesManager({
           ) : (
             <div className="flex flex-wrap items-end gap-4">
               <div>
-                <label className="text-xs font-bold text-cream/40 mb-1 block">
+                <label className="text-xs font-bold text-cream/65 mb-1 block">
                   {lang === "ar" ? "ابدأ من رقم" : "Start from #"}
                 </label>
                 <input
@@ -193,11 +193,11 @@ export function TablesManager({
                   value={batchStart}
                   onChange={(e) => setBatchStart(e.target.value)}
                   placeholder={String(nextTableNum)}
-                  className="w-24 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-cream/40 mb-1 block">
+                <label className="text-xs font-bold text-cream/65 mb-1 block">
                   {lang === "ar" ? "العدد" : "Count"}
                 </label>
                 <input
@@ -206,7 +206,7 @@ export function TablesManager({
                   max={500}
                   value={batchCount}
                   onChange={(e) => setBatchCount(e.target.value)}
-                  className="w-24 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
                 />
               </div>
               <button onClick={handleBatchGenerate} className="brand-button text-sm">
@@ -224,7 +224,7 @@ export function TablesManager({
             key={table.id}
             className={`group rounded-xl border p-5 transition-all hover:scale-[1.01] ${
               table.isActive
-                ? "border-white/8 bg-ink-900 hover:border-white/15"
+                ? "border-white/15 bg-ink-900 hover:border-white/15"
                 : "border-red-500/20 bg-red-500/5 opacity-60"
             }`}
           >
@@ -261,7 +261,7 @@ export function TablesManager({
                 onClick={() => handleToggle(table.id)}
                 className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors ${
                   table.isActive
-                    ? "bg-white/5 text-cream/40 hover:bg-red-500/15 hover:text-red-400"
+                    ? "bg-white/5 text-cream/65 hover:bg-red-500/15 hover:text-red-400"
                     : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
                 }`}
               >
@@ -282,7 +282,7 @@ export function TablesManager({
         ))}
 
         {filtered.length === 0 && (
-          <p className="col-span-full py-12 text-center text-base text-cream/35">
+          <p className="col-span-full py-12 text-center text-base text-cream/60">
             {t.noTables}
           </p>
         )}

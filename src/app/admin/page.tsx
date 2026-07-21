@@ -35,7 +35,7 @@ export default async function AdminDashboard() {
 
 function StatCard({ labelKey, value }: { labelKey: string; value: number }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-ink-900 p-4 lg:p-6">
+    <div className="rounded-xl border border-white/15 bg-ink-900 p-4 lg:p-6">
       <span className="text-3xl lg:text-4xl font-black text-gold-300">{value}</span>
       <p className="mt-2 text-xs font-bold text-cream/70"><T k={labelKey} /></p>
     </div>

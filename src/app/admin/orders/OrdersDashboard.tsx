@@ -114,7 +114,7 @@ export function OrdersDashboard({
   }, [lang]);
 
   const getTimeColor = useCallback((dateStr: string | null) => {
-    if (!dateStr) return "text-cream/45";
+    if (!dateStr) return "text-cream/70";
     const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000);
     if (diff < 5) return "text-green-400";
     if (diff < 15) return "text-yellow-400";
@@ -227,7 +227,7 @@ export function OrdersDashboard({
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "active"
                 ? "bg-brand-500/15 text-gold-300"
-                : "text-cream/35 hover:text-cream"
+                : "text-cream/55 hover:text-cream"
             }`}
           >
             <Bell size={18} />
@@ -238,7 +238,7 @@ export function OrdersDashboard({
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "history"
                 ? "bg-brand-500/15 text-gold-300"
-                : "text-cream/35 hover:text-cream"
+                : "text-cream/55 hover:text-cream"
             }`}
           >
             <History size={18} />
@@ -249,7 +249,7 @@ export function OrdersDashboard({
             className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-bold transition-colors ${
               tab === "summary"
                 ? "bg-brand-500/15 text-gold-300"
-                : "text-cream/35 hover:text-cream"
+                : "text-cream/55 hover:text-cream"
             }`}
           >
             <BarChart3 size={18} />
@@ -279,15 +279,15 @@ export function OrdersDashboard({
       {tab === "active" && (
         <div className="mt-6">
           {Object.keys(groupedActive).length === 0 && (
-            <div className="rounded-xl border border-dashed border-white/10 p-12 text-center">
-              <p className="text-cream/35 text-base font-bold">{t.noActiveOrders}</p>
-              <p className="mt-1 text-sm text-cream/25">{t.newOrdersAppear}</p>
+            <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+              <p className="text-cream/55 text-base font-bold">{t.noActiveOrders}</p>
+              <p className="mt-1 text-sm text-cream/70">{t.newOrdersAppear}</p>
             </div>
           )}
 
           {Object.entries(groupedActive).map(([groupKey, orders]) => (
             <div key={groupKey} className="mb-6">
-              <h3 className="text-sm font-black text-cream/45 uppercase tracking-wider mb-3">
+              <h3 className="text-sm font-black text-cream/70 uppercase tracking-wider mb-3">
                 {groupKey}
               </h3>
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -302,7 +302,7 @@ export function OrdersDashboard({
                     return (
                       <div
                         key={order.id}
-                        className="rounded-xl border border-white/8 bg-ink-900 p-4"
+                        className="rounded-xl border border-white/15 bg-ink-900 p-4"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-2">
@@ -352,12 +352,12 @@ export function OrdersDashboard({
                                   </div>
                                 )}
                                 {item.notes && (
-                                  <span className="text-cream/35 italic ms-1 text-sm">
+                                  <span className="text-cream/55 italic ms-1 text-sm">
                                     — &quot;{item.notes}&quot;
                                   </span>
                                 )}
                               </div>
-                              <span className="text-cream/45 shrink-0 ms-2 font-bold text-sm">
+                              <span className="text-cream/70 shrink-0 ms-2 font-bold text-sm">
                                 {Number(item.priceAtOrder)} LE
                               </span>
                             </div>
@@ -416,9 +416,9 @@ export function OrdersDashboard({
       {tab === "history" && (
         <div className="mt-6">
           {filteredServed.length === 0 && (
-            <div className="rounded-xl border border-dashed border-white/10 p-12 text-center">
-              <p className="text-cream/35 text-base font-bold">{t.noServedOrders}</p>
-              <p className="mt-1 text-sm text-cream/25">
+            <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+              <p className="text-cream/55 text-base font-bold">{t.noServedOrders}</p>
+              <p className="mt-1 text-sm text-cream/70">
                 {t.served}... {historyTTL} {lang === "ar" ? "ساعة" : "hours"}
               </p>
             </div>
@@ -434,7 +434,7 @@ export function OrdersDashboard({
                   <span className="text-sm font-bold text-green-400">
                     Table {order.table.tableNumber} — {branchName(order.table.branch)}
                   </span>
-                  <span className="text-sm text-cream/35">
+                  <span className="text-sm text-cream/55">
                     {getTimeAgo(order.servedAt)}
                   </span>
                 </div>
@@ -453,7 +453,7 @@ export function OrdersDashboard({
                             )}
                         </span>
                       </div>
-                      <span className="text-cream/35 shrink-0 ms-2 text-sm">{Number(item.priceAtOrder)} LE</span>
+                      <span className="text-cream/55 shrink-0 ms-2 text-sm">{Number(item.priceAtOrder)} LE</span>
                     </div>
                   ))}
                 </div>
@@ -500,27 +500,27 @@ export function OrdersDashboard({
           </div>
 
           {summaryLoading ? (
-            <div className="rounded-xl border border-white/8 bg-ink-900 p-12 text-center">
-              <p className="text-base text-cream/40">{lang === "ar" ? "جارٍ التحميل..." : "Loading..."}</p>
+            <div className="rounded-xl border border-white/15 bg-ink-900 p-12 text-center">
+              <p className="text-base text-cream/65">{lang === "ar" ? "جارٍ التحميل..." : "Loading..."}</p>
             </div>
           ) : summaryData ? (
             <>
               {/* Stats Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
-                  <p className="text-sm text-cream/40 uppercase">{lang === "ar" ? "الطلبات" : "Orders"}</p>
+                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <p className="text-sm text-cream/65 uppercase">{lang === "ar" ? "الطلبات" : "Orders"}</p>
                   <p className="text-4xl font-black text-cream mt-1">{summaryData.totalOrders}</p>
                 </div>
-                <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
-                  <p className="text-sm text-cream/40 uppercase">{lang === "ar" ? "الإيرادات" : "Revenue"}</p>
+                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <p className="text-sm text-cream/65 uppercase">{lang === "ar" ? "الإيرادات" : "Revenue"}</p>
                   <p className="text-4xl font-black text-gold-300 mt-1">{summaryData.totalRevenue} <span className="text-lg">LE</span></p>
                 </div>
-                <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
-                  <p className="text-sm text-cream/40 uppercase">{lang === "ar" ? "الأصناف المباعة" : "Items Sold"}</p>
+                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <p className="text-sm text-cream/65 uppercase">{lang === "ar" ? "الأصناف المباعة" : "Items Sold"}</p>
                   <p className="text-4xl font-black text-cream mt-1">{summaryData.itemsSold}</p>
                 </div>
-                <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
-                  <p className="text-sm text-cream/40 uppercase">{lang === "ar" ? "متوسط الطلب" : "Avg Order"}</p>
+                <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
+                  <p className="text-sm text-cream/65 uppercase">{lang === "ar" ? "متوسط الطلب" : "Avg Order"}</p>
                   <p className="text-4xl font-black text-cream mt-1">
                     {summaryData.totalOrders > 0 ? Math.round(summaryData.totalRevenue / summaryData.totalOrders) : 0} <span className="text-lg">LE</span>
                   </p>
@@ -530,7 +530,7 @@ export function OrdersDashboard({
               <div className="grid gap-6 sm:grid-cols-2">
                 {/* Top Items */}
                 {summaryData.topItems.length > 0 && (
-                  <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
+                  <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
                     <h3 className="text-base font-black text-cream/60 uppercase mb-4">
                       {lang === "ar" ? "الأكثر مبيعًا" : "Top Selling Items"}
                     </h3>
@@ -542,7 +542,7 @@ export function OrdersDashboard({
                             <span className="text-base font-bold text-cream">{lang === "ar" ? item.nameAr : item.nameEn}</span>
                           </div>
                           <div className="flex items-center gap-4">
-                            <span className="text-sm text-cream/40">×{item.quantity}</span>
+                            <span className="text-sm text-cream/65">×{item.quantity}</span>
                             <span className="text-base font-bold text-gold-300">{item.revenue} LE</span>
                           </div>
                         </div>
@@ -553,7 +553,7 @@ export function OrdersDashboard({
 
                 {/* Branch Stats */}
                 {summaryData.branchStats.length > 0 && (
-                  <div className="rounded-xl border border-white/8 bg-ink-900 p-5">
+                  <div className="rounded-xl border border-white/15 bg-ink-900 p-5">
                     <h3 className="text-base font-black text-cream/60 uppercase mb-4">
                       {lang === "ar" ? "الطلبات حسب الفرع" : "Orders by Branch"}
                     </h3>
@@ -562,7 +562,7 @@ export function OrdersDashboard({
                         <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-2.5">
                           <span className="text-base font-bold text-cream">{lang === "ar" ? branch.nameAr : branch.nameEn}</span>
                           <div className="flex items-center gap-4">
-                            <span className="text-sm text-cream/40">{branch.count} {lang === "ar" ? "طلب" : "orders"}</span>
+                            <span className="text-sm text-cream/65">{branch.count} {lang === "ar" ? "طلب" : "orders"}</span>
                             <span className="text-base font-bold text-gold-300">{branch.revenue} LE</span>
                           </div>
                         </div>
@@ -573,8 +573,8 @@ export function OrdersDashboard({
               </div>
 
               {summaryData.totalOrders === 0 && (
-                <div className="rounded-xl border border-dashed border-white/10 p-12 text-center">
-                  <p className="text-cream/35 text-base font-bold">
+                <div className="rounded-xl border border-dashed border-white/15 p-12 text-center">
+                  <p className="text-cream/55 text-base font-bold">
                     {lang === "ar" ? "لا توجد طلبات في هذا اليوم" : "No orders on this day"}
                   </p>
                 </div>

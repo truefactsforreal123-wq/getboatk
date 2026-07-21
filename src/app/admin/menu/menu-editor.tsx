@@ -224,20 +224,20 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
 
       {showAddCat && (
         <form
-          className="flex flex-wrap items-center gap-2 rounded-xl border border-white/8 bg-ink-900 p-4"
+          className="flex flex-wrap items-center gap-2 rounded-xl border border-white/15 bg-ink-900 p-4"
           onSubmit={(e) => { e.preventDefault(); handleCreateCategory(); }}
         >
           <input
             placeholder={t.arabicName}
             value={newCatAr}
             onChange={(e) => setNewCatAr(e.target.value)}
-            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/25"
+            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/45"
           />
           <input
             placeholder={t.englishName}
             value={newCatEn}
             onChange={(e) => setNewCatEn(e.target.value)}
-            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/25"
+            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/45"
           />
           <button type="submit" className="brand-button text-xs">{t.create}</button>
           <button type="button" onClick={() => setShowAddCat(false)} className="outline-button text-xs">{t.cancel}</button>
@@ -245,7 +245,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
       )}
 
       {categories.map((cat) => (
-        <div key={cat.id} className="overflow-hidden rounded-xl border border-white/8 bg-ink-900">
+        <div key={cat.id} className="overflow-hidden rounded-xl border border-white/15 bg-ink-900">
           <div className="flex items-center gap-3 px-5 py-4">
             <button onClick={() => toggle(cat.id)} className="text-cream/45 hover:text-cream">
               {expanded.has(cat.id) ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
@@ -267,16 +267,16 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                 <input name="nameAr" defaultValue={cat.nameAr} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm font-bold text-cream" />
                 <input name="nameEn" defaultValue={cat.nameEn} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm font-bold text-cream" />
                 <button type="submit" className="grid h-9 w-9 place-items-center rounded-lg bg-olive-400/16 text-olive-400"><Check size={16} /></button>
-                <button type="button" onClick={() => setEditingCat(null)} className="grid h-9 w-9 place-items-center rounded-lg text-cream/35 hover:text-cream"><X size={16} /></button>
+                <button type="button" onClick={() => setEditingCat(null)} className="grid h-9 w-9 place-items-center rounded-lg text-cream/55 hover:text-cream"><X size={16} /></button>
               </form>
             ) : (
               <>
-                <span className="flex-1 text-sm font-black text-cream">{cat.nameAr} <span className="text-cream/35">— {cat.nameEn}</span></span>
-                  <span className="text-xs font-bold text-cream/25">{cat.items.length} {t.items}</span>
+                <span className="flex-1 text-sm font-black text-cream">{cat.nameAr} <span className="text-cream/55">— {cat.nameEn}</span></span>
+                  <span className="text-xs font-bold text-cream/45">{cat.items.length} {t.items}</span>
                 <button onClick={() => openAddItem(cat.id)} className="flex items-center gap-1 rounded-lg bg-gold-500/10 px-3 py-1.5 text-xs font-bold text-gold-300 hover:bg-gold-500/20">
                    <Plus size={14} /> {t.addItem}
                 </button>
-                <button onClick={() => setEditingCat(cat.id)} className="grid h-8 w-8 place-items-center rounded-lg text-cream/35 hover:text-cream"><Edit3 size={15} /></button>
+                <button onClick={() => setEditingCat(cat.id)} className="grid h-8 w-8 place-items-center rounded-lg text-cream/55 hover:text-cream"><Edit3 size={15} /></button>
                 <button
                   onClick={async () => {
                     if (!confirm(t.deleteCategoryConfirm)) return;
@@ -288,7 +288,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                       alert("Failed. Please try again.");
                     }
                   }}
-                  className="grid h-8 w-8 place-items-center rounded-lg text-cream/25 hover:text-brand-400"
+                  className="grid h-8 w-8 place-items-center rounded-lg text-cream/45 hover:text-brand-400"
                 >
                   <Trash2 size={15} />
                 </button>
@@ -297,7 +297,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
           </div>
 
           {expanded.has(cat.id) && (
-            <div className="border-t border-white/5">
+            <div className="border-t border-white/10">
               {cat.items.map((item: Item) => {
                 const sizesArr = (item.sizes as unknown as SizeRow[]) ?? [];
                 return (
@@ -309,15 +309,15 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                     <div className="flex items-center gap-2">
                       <p className="truncate text-sm font-bold text-cream">{item.nameAr}</p>
                       {item.badge && <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] font-black ${item.badge === "popular" ? "bg-gold-200 text-ink-950" : "bg-brand-100 text-brand-700"}`}>{item.badge}</span>}
-                      {!item.available && <span className="shrink-0 rounded bg-ink-800 px-1.5 py-0.5 text-[10px] font-black text-cream/35">{t.hidden}</span>}
+                      {!item.available && <span className="shrink-0 rounded bg-ink-800 px-1.5 py-0.5 text-[10px] font-black text-cream/55">{t.hidden}</span>}
                     </div>
-                    <p className="truncate text-xs text-cream/35">{item.nameEn}</p>
+                    <p className="truncate text-xs text-cream/55">{item.nameEn}</p>
                   </div>
                   <span className="shrink-0 text-xs font-black text-gold-300">
                     {item.price ? `${item.price} LE` : sizesArr.length > 0 ? `${sizesArr[0]?.price}–${sizesArr[sizesArr.length - 1]?.price} LE` : "—"}
                   </span>
-                  <button onClick={() => openEditItem(item)} className="grid h-8 w-8 place-items-center rounded-lg text-cream/35 hover:text-cream"><Edit3 size={14} /></button>
-                  <button onClick={async () => { try { await toggleMenuItemAvailability(item.id); router.refresh(); } catch (err) { console.error("Failed to toggle item:", err); alert("Failed. Please try again."); } }} className="grid h-8 w-8 place-items-center rounded-lg text-xs text-cream/35 hover:text-cream">
+                  <button onClick={() => openEditItem(item)} className="grid h-8 w-8 place-items-center rounded-lg text-cream/55 hover:text-cream"><Edit3 size={14} /></button>
+                  <button onClick={async () => { try { await toggleMenuItemAvailability(item.id); router.refresh(); } catch (err) { console.error("Failed to toggle item:", err); alert("Failed. Please try again."); } }} className="grid h-8 w-8 place-items-center rounded-lg text-xs text-cream/55 hover:text-cream">
                     {item.available ? <Check size={14} /> : <X size={14} />}
                   </button>
                   <button
@@ -331,7 +331,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                         alert("Failed. Please try again.");
                       }
                     }}
-                    className="grid h-8 w-8 place-items-center rounded-lg text-cream/25 hover:text-brand-400"
+                    className="grid h-8 w-8 place-items-center rounded-lg text-cream/45 hover:text-brand-400"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -350,7 +350,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
               <h2 className="text-lg font-black text-cream">
                 {editingItemId ? t.editItem : t.addItem}
               </h2>
-              <button onClick={() => { setItemForm(null); setEditingItemId(null); }} className="text-cream/35 hover:text-cream"><X size={20} /></button>
+              <button onClick={() => { setItemForm(null); setEditingItemId(null); }} className="text-cream/55 hover:text-cream"><X size={20} /></button>
             </div>
 
             <div className="space-y-4">
@@ -402,7 +402,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                     value={itemForm.image}
                     onChange={(e) => setItemForm({ ...itemForm, image: e.target.value })}
                     placeholder="Image URL"
-                    className="flex-1 rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream placeholder:text-cream/25"
+                    className="flex-1 rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream placeholder:text-cream/45"
                   />
                   <input
                     ref={fileRef}
