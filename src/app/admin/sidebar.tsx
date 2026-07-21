@@ -62,7 +62,7 @@ export function Sidebar() {
         </div>
         <div className="flex flex-col">
           <span className="font-display text-[15px] font-bold text-cream">{ta.adminPanel}</span>
-          <span className="text-[11px] font-medium text-brass-400/70">جيت بوتك — ملوك الشاورما منذ ١٩٨٢</span>
+          <span className="text-[11px] font-medium text-brass-400/70">جيت بوئتك — ملوك الشاورما منذ ١٩٨٢</span>
         </div>
       </div>
 
