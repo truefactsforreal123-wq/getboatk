@@ -64,20 +64,20 @@ export function BranchesEditor({ branches: initial }: { branches: Branch[] }) {
           <h3 className="text-sm font-black text-cream">{t.createBranch}</h3>
           <form className="mt-4 grid gap-3" onSubmit={handleCreate}>
             <div className="grid grid-cols-2 gap-2">
-              <input name="number" required placeholder={t.branchNumber} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm font-bold text-cream placeholder:text-cream/30" />
-              <input name="mapsUrl" placeholder="Google Maps URL" className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
+              <input name="number" required placeholder={t.branchNumber} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm font-bold text-cream placeholder:text-cream/55" />
+              <input name="mapsUrl" placeholder="Google Maps URL" className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <input name="nameAr" required placeholder={t.nameAr} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
-              <input name="nameEn" required placeholder={t.nameEn} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
+              <input name="nameAr" required placeholder={t.nameAr} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
+              <input name="nameEn" required placeholder={t.nameEn} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <input name="addressAr" required placeholder={t.addressAr} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
-              <input name="addressEn" required placeholder={t.addressEn} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
+              <input name="addressAr" required placeholder={t.addressAr} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
+              <input name="addressEn" required placeholder={t.addressEn} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <input name="phone" required placeholder={t.phone} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
-              <input name="whatsapp" required placeholder={t.whatsapp} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/30" />
+              <input name="phone" required placeholder={t.phone} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
+              <input name="whatsapp" required placeholder={t.whatsapp} className="min-h-9 rounded-lg border border-white/10 bg-black/20 px-3 text-sm text-cream placeholder:text-cream/55" />
             </div>
             <button type="submit" disabled={creating} className="brand-button mt-2 w-fit text-sm disabled:opacity-40">
               <Check size={14} /> {creating ? t.creating : t.createBranch}

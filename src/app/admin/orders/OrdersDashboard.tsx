@@ -538,7 +538,7 @@ export function OrdersDashboard({
                       {summaryData.topItems.map((item, idx) => (
                         <div key={idx} className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-2.5">
                           <div className="flex items-center gap-3">
-                            <span className="text-sm font-black text-cream/30 w-6">#{idx + 1}</span>
+                            <span className="text-sm font-black text-cream/55 w-6">#{idx + 1}</span>
                             <span className="text-base font-bold text-cream">{lang === "ar" ? item.nameAr : item.nameEn}</span>
                           </div>
                           <div className="flex items-center gap-4">

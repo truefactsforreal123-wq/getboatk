@@ -231,13 +231,13 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
             placeholder={t.arabicName}
             value={newCatAr}
             onChange={(e) => setNewCatAr(e.target.value)}
-            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/45"
+            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/70"
           />
           <input
             placeholder={t.englishName}
             value={newCatEn}
             onChange={(e) => setNewCatEn(e.target.value)}
-            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/45"
+            className="min-w-0 flex-1 rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-sm font-bold text-cream placeholder:text-cream/70"
           />
           <button type="submit" className="brand-button text-xs">{t.create}</button>
           <button type="button" onClick={() => setShowAddCat(false)} className="outline-button text-xs">{t.cancel}</button>
@@ -247,7 +247,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
       {categories.map((cat) => (
         <div key={cat.id} className="overflow-hidden rounded-xl border border-white/15 bg-ink-900">
           <div className="flex items-center gap-3 px-5 py-4">
-            <button onClick={() => toggle(cat.id)} className="text-cream/45 hover:text-cream">
+            <button onClick={() => toggle(cat.id)} className="text-cream/70 hover:text-cream">
               {expanded.has(cat.id) ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
             </button>
             <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
@@ -272,7 +272,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
             ) : (
               <>
                 <span className="flex-1 text-sm font-black text-cream">{cat.nameAr} <span className="text-cream/55">— {cat.nameEn}</span></span>
-                  <span className="text-xs font-bold text-cream/45">{cat.items.length} {t.items}</span>
+                  <span className="text-xs font-bold text-cream/70">{cat.items.length} {t.items}</span>
                 <button onClick={() => openAddItem(cat.id)} className="flex items-center gap-1 rounded-lg bg-gold-500/10 px-3 py-1.5 text-xs font-bold text-gold-300 hover:bg-gold-500/20">
                    <Plus size={14} /> {t.addItem}
                 </button>
@@ -288,7 +288,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                       alert("Failed. Please try again.");
                     }
                   }}
-                  className="grid h-8 w-8 place-items-center rounded-lg text-cream/45 hover:text-brand-400"
+                  className="grid h-8 w-8 place-items-center rounded-lg text-cream/70 hover:text-brand-400"
                 >
                   <Trash2 size={15} />
                 </button>
@@ -331,7 +331,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                         alert("Failed. Please try again.");
                       }
                     }}
-                    className="grid h-8 w-8 place-items-center rounded-lg text-cream/45 hover:text-brand-400"
+                    className="grid h-8 w-8 place-items-center rounded-lg text-cream/70 hover:text-brand-400"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -356,28 +356,28 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.arabicName}</label>
+                  <label className="text-xs font-bold text-cream/70">{t.arabicName}</label>
                   <input value={itemForm.nameAr} onChange={(e) => setItemForm({ ...itemForm, nameAr: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream" />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.englishName}</label>
+                  <label className="text-xs font-bold text-cream/70">{t.englishName}</label>
                   <input value={itemForm.nameEn} onChange={(e) => setItemForm({ ...itemForm, nameEn: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.arabicDesc}</label>
+                  <label className="text-xs font-bold text-cream/70">{t.arabicDesc}</label>
                   <input value={itemForm.descAr} onChange={(e) => setItemForm({ ...itemForm, descAr: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream" />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.englishDesc}</label>
+                  <label className="text-xs font-bold text-cream/70">{t.englishDesc}</label>
                   <input value={itemForm.descEn} onChange={(e) => setItemForm({ ...itemForm, descEn: e.target.value })} className="mt-1 w-full rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream" />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-bold text-cream/45">{t.badge}</label>
+                <label className="text-xs font-bold text-cream/70">{t.badge}</label>
                 <select
                   value={itemForm.badge}
                   onChange={(e) => setItemForm({ ...itemForm, badge: e.target.value })}
@@ -390,7 +390,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-cream/45">{t.image}</label>
+                <label className="text-xs font-bold text-cream/70">{t.image}</label>
                 <div className="mt-1 flex items-center gap-3">
                   {itemForm.image && (
                     <div className="relative h-12 w-20 shrink-0 overflow-hidden rounded-lg">
@@ -402,7 +402,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                     value={itemForm.image}
                     onChange={(e) => setItemForm({ ...itemForm, image: e.target.value })}
                     placeholder="Image URL"
-                    className="flex-1 rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream placeholder:text-cream/45"
+                    className="flex-1 rounded-lg border border-white/10 bg-ink-950 px-3 py-2 text-sm text-cream placeholder:text-cream/70"
                   />
                   <input
                     ref={fileRef}
@@ -440,7 +440,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
 
               {!itemForm.hasSizes ? (
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.price} (LE)</label>
+                  <label className="text-xs font-bold text-cream/70">{t.price} (LE)</label>
                   <input
                     type="number"
                     value={itemForm.price}
@@ -450,7 +450,7 @@ export function MenuEditor({ categories }: { categories: Cat[] }) {
                 </div>
               ) : (
                 <div>
-                  <label className="text-xs font-bold text-cream/45">{t.sizes}</label>
+                  <label className="text-xs font-bold text-cream/70">{t.sizes}</label>
                   <div className="mt-2 space-y-2">
                     {itemForm.sizes.map((size, idx) => (
                       <div key={idx} className="flex items-center gap-2">

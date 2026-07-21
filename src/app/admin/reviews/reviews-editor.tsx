@@ -64,7 +64,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
                 ))}
               </div>
               <p className="mt-2 text-sm leading-6 text-cream/55 break-all">{r.text}</p>
-              <p className="mt-2 text-xs text-cream/45">{new Date(r.createdAt).toLocaleDateString()}</p>
+              <p className="mt-2 text-xs text-cream/70">{new Date(r.createdAt).toLocaleDateString()}</p>
             </div>
             <div className="flex gap-1 shrink-0">
               {!r.approved && (
@@ -94,7 +94,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
                     alert("Failed. Please try again.");
                   }
                 }}
-                className="grid h-8 w-8 place-items-center rounded-lg text-cream/45 hover:text-red-400"
+                className="grid h-8 w-8 place-items-center rounded-lg text-cream/70 hover:text-red-400"
               >
                 <Trash2 size={15} />
               </button>

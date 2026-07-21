@@ -44,7 +44,7 @@ export function Sidebar() {
     return `sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold transition-all duration-200 ${
       active
         ? "sidebar-link-active bg-brass-500/[0.12] text-brass-400"
-        : "text-cream/45 hover:bg-white/[0.04] hover:text-cream/80"
+        : "text-cream/70 hover:bg-white/[0.08] hover:text-cream/90"
     }`;
   }
 
@@ -57,17 +57,17 @@ export function Sidebar() {
     <>
       {/* Brand header */}
       <div className="flex items-center gap-3 px-5 pb-6 pt-6">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-cocoa-800/80 ring-1 ring-white/[0.06]">
+        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-cocoa-800/80 ring-1 ring-white/[0.1]">
           <Image src="/logo.jpg" alt="" width={32} height={32} className="rounded-lg" />
         </div>
         <div className="flex flex-col">
           <span className="text-[13px] font-bold text-cream/90">{ta.adminPanel}</span>
-          <span className="text-[11px] font-medium text-cream/30">جيت بوتك</span>
+          <span className="text-[11px] font-medium text-cream/55">جيت بوتك</span>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="mx-4 h-px bg-white/[0.06]" />
+      <div className="mx-4 h-px bg-white/[0.08]" />
 
       {/* Navigation */}
       <nav className="flex-1 space-y-0.5 px-3 py-4">
@@ -86,11 +86,11 @@ export function Sidebar() {
 
       {/* Bottom actions */}
       <div className="px-3 pb-4">
-        <div className="mx-1 mb-3 h-px bg-white/[0.06]" />
+        <div className="mx-1 mb-3 h-px bg-white/[0.08]" />
         <div className="space-y-0.5">
           <button
             onClick={toggleLang}
-            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/45 transition-all duration-200 hover:bg-white/[0.04] hover:text-cream/80"
+            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-white/[0.08] hover:text-cream/90"
           >
             <Languages size={18} strokeWidth={2} />
             {ta.language}
@@ -98,14 +98,14 @@ export function Sidebar() {
           <a
             href="/"
             target="_blank"
-            className="sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/45 transition-all duration-200 hover:bg-white/[0.04] hover:text-cream/80"
+            className="sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-white/[0.08] hover:text-cream/90"
           >
             <Flame size={18} strokeWidth={2} />
             {ta.viewSite}
           </a>
           <button
             onClick={() => signOut()}
-            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/45 transition-all duration-200 hover:bg-red-500/[0.08] hover:text-red-400/80"
+            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-red-500/[0.08] hover:text-red-400/80"
           >
             <LogOut size={18} strokeWidth={2} />
             {ta.signOut}
@@ -135,19 +135,19 @@ export function Sidebar() {
       )}
 
       {/* Desktop sidebar */}
-      <aside className="sidebar-container hidden lg:flex w-[260px] flex-col border-l border-white/[0.06] bg-cocoa-950/80 backdrop-blur-xl shrink-0">
+      <aside className="sidebar-container hidden lg:flex w-[260px] flex-col border-l border-white/[0.1] bg-cocoa-950/80 backdrop-blur-xl shrink-0">
         {navContent}
       </aside>
 
       {/* Mobile sidebar */}
       <aside
-        className={`sidebar-container fixed inset-y-0 right-0 z-50 flex w-[280px] flex-col border-l border-white/[0.06] bg-cocoa-950/95 backdrop-blur-xl transition-transform duration-300 ease-out lg:hidden ${
+        className={`sidebar-container fixed inset-y-0 right-0 z-50 flex w-[280px] flex-col border-l border-white/[0.1] bg-cocoa-950/95 backdrop-blur-xl transition-transform duration-300 ease-out lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-lg text-cream/40 transition-colors hover:text-cream/70"
+          className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-lg text-cream/55 transition-colors hover:text-cream/90"
           aria-label="Close menu"
         >
           <X size={18} />

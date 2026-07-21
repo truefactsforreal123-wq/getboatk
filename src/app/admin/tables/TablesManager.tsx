@@ -84,7 +84,7 @@ export function TablesManager({
       {branches.length === 0 ? (
         <div className="rounded-xl border border-dashed border-white/15 bg-ink-900 p-12 text-center">
           <p className="text-base font-bold text-cream/60">{t.noBranches}</p>
-          <p className="mt-1 text-sm text-cream/25">{t.goToBranches}</p>
+          <p className="mt-1 text-sm text-cream/50">{t.goToBranches}</p>
           <a href="/admin/branches" className="mt-4 inline-flex brand-button text-sm">{t.goToBranches}</a>
         </div>
       ) : (
@@ -101,7 +101,7 @@ export function TablesManager({
           ))}
         </select>
 
-        <span className="text-sm font-bold text-cream/30">
+        <span className="text-sm font-bold text-cream/55">
           {filtered.length} {lang === "ar" ? "طاولة" : "tables"}
         </span>
 
@@ -139,7 +139,7 @@ export function TablesManager({
             <h3 className="text-sm font-black text-cream">
               {lang === "ar" ? `إضافة لـ ${activeBranch?.nameAr}` : `Add to ${activeBranch?.nameEn}`}
             </h3>
-            <button onClick={() => setShowAdd(false)} className="text-cream/30 hover:text-cream">
+            <button onClick={() => setShowAdd(false)} className="text-cream/55 hover:text-cream">
               <X size={16} />
             </button>
           </div>
@@ -175,7 +175,7 @@ export function TablesManager({
                 value={newTableNum}
                 onChange={(e) => setNewTableNum(e.target.value)}
                 placeholder={String(nextTableNum)}
-                className="w-28 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                className="w-28 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/50"
               />
               <button onClick={handleCreate} className="brand-button text-sm">
                 {t.create}
@@ -193,7 +193,7 @@ export function TablesManager({
                   value={batchStart}
                   onChange={(e) => setBatchStart(e.target.value)}
                   placeholder={String(nextTableNum)}
-                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/50"
                 />
               </div>
               <div>
@@ -206,7 +206,7 @@ export function TablesManager({
                   max={500}
                   value={batchCount}
                   onChange={(e) => setBatchCount(e.target.value)}
-                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/25"
+                  className="w-24 rounded-lg border border-dashed border-white/15 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream/50"
                 />
               </div>
               <button onClick={handleBatchGenerate} className="brand-button text-sm">
