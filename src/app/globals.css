@@ -23,6 +23,17 @@
   --color-brass-300: #e9ce8e;
   --color-brass-200: #f5e5be;
 
+  /* ── Admin accent colors ── */
+  --color-red-500: #c1272d;
+  --color-red-400: #dc443d;
+  --color-red-300: #e9716c;
+  --color-red-100: #f9d4d3;
+  --color-green-500: #2d8a4e;
+  --color-green-400: #4ade80;
+  --color-green-100: #dcfce7;
+  --color-yellow-400: #facc15;
+  --color-blue-400: #60a5fa;
+
   /* ── Typography ── */
   --font-display: var(--font-amiri), "Amiri", serif;
   --font-body: var(--font-tajawal), "Tajawal", sans-serif;
@@ -38,6 +49,7 @@
   --shadow-elevation-mid: 0 12px 32px rgba(27, 15, 7, 0.25);
   --shadow-elevation-high: 0 24px 64px rgba(27, 15, 7, 0.35);
   --shadow-glow-brass: 0 0 40px rgba(200, 155, 60, 0.3);
+  --shadow-glow-red: 0 18px 55px -22px rgb(193 39 45 / 0.7);
 
   /* ── Motion ── */
   --animate-marquee: marquee 42s linear infinite;
@@ -102,6 +114,84 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Admin Dashboard Styles ── */
+/* Maps old color tokens to new project palette */
+.bg-ink-950 { background-color: var(--color-cocoa-950); }
+.bg-ink-900 { background-color: var(--color-cocoa-900); }
+.bg-ink-800 { background-color: var(--color-cocoa-800); }
+.bg-ink-700 { background-color: var(--color-cocoa-700); }
+
+.text-cream { color: var(--color-cream-50); }
+
+.text-gold-300 { color: var(--color-brass-400); }
+.text-gold-200 { color: var(--color-brass-300); }
+.bg-gold-200 { background-color: var(--color-brass-300); }
+.bg-gold-500\/10 { background-color: rgba(200, 155, 60, 0.10); }
+.bg-gold-500\/15 { background-color: rgba(200, 155, 60, 0.15); }
+.bg-gold-500\/20 { background-color: rgba(200, 155, 60, 0.20); }
+.bg-gold-500\/25 { background-color: rgba(200, 155, 60, 0.25); }
+.bg-gold-400\/25 { background-color: rgba(218, 181, 95, 0.25); }
+.text-gold-300 { color: var(--color-brass-400); }
+
+.bg-brand-500\/10 { background-color: rgba(193, 39, 45, 0.10); }
+.bg-brand-500\/15 { background-color: rgba(193, 39, 45, 0.15); }
+.text-brand-300 { color: var(--color-red-300); }
+.text-brand-400 { color: var(--color-red-400); }
+.text-brand-500\/40 { color: rgba(193, 39, 45, 0.40); }
+.bg-brand-100 { background-color: var(--color-red-100); }
+.text-brand-700 { color: #7a171c; }
+
+.bg-olive-400\/16 { background-color: rgba(74, 222, 128, 0.16); }
+.text-olive-400 { color: var(--color-green-400); }
+
+/* Admin button styles */
+.brand-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 11px 20px;
+  font-weight: 800;
+  border: 1px solid var(--color-brass-600);
+  background: var(--color-cocoa-800);
+  color: var(--color-brass-300);
+  box-shadow: var(--shadow-elevation-low);
+  transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.brand-button:hover {
+  transform: translateY(-2px);
+  background: var(--color-cocoa-700);
+  border-color: var(--color-brass-500);
+}
+
+.outline-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 11px 20px;
+  font-weight: 800;
+  border: 1px solid rgba(200, 155, 60, 0.35);
+  background: rgba(27, 15, 7, 0.52);
+  color: var(--color-brass-300);
+  backdrop-filter: blur(12px);
+  transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+.outline-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-brass-400);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Admin scrollbar */
+.admin-scroll::-webkit-scrollbar { width: 6px; }
+.admin-scroll::-webkit-scrollbar-track { background: var(--color-cocoa-950); }
+.admin-scroll::-webkit-scrollbar-thumb { background: var(--color-cocoa-600); border-radius: 4px; }
 
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {

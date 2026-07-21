@@ -9,14 +9,25 @@ import Stats from "@/components/home/Stats";
 import Promises from "@/components/home/Promises";
 import CtaBanner from "@/components/home/CtaBanner";
 
-export default function HomeClient() {
+type LocalizedText = { ar: string; en: string };
+
+type SignatureItem = {
+  id: string;
+  name: LocalizedText;
+  desc: LocalizedText;
+  price?: number;
+  badge?: "popular" | null;
+  image: string;
+};
+
+export default function HomeClient({ signatureItems }: { signatureItems: SignatureItem[] }) {
   const { t } = useLanguage();
 
   return (
     <>
       <Hero />
       <Marquee items={t.marquee} />
-      <Signature />
+      <Signature items={signatureItems} />
       <Heritage />
       <Stats />
       <Promises />

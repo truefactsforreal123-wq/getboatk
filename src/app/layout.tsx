@@ -2,9 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Amiri, Tajawal } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
+import LayoutChrome from "@/components/layout/LayoutChrome";
 
 const amiri = Amiri({
   weight: ["400", "700"],
@@ -65,12 +63,9 @@ export default function RootLayout({
         </a>
 
         <LanguageProvider>
-          <Navbar />
-          <main id="main-content" className="flex-1" tabIndex={-1}>
+          <LayoutChrome>
             {children}
-          </main>
-          <Footer />
-          <WhatsAppFloat />
+          </LayoutChrome>
         </LanguageProvider>
       </body>
     </html>

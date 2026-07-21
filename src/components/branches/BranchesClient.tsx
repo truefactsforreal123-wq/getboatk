@@ -3,14 +3,26 @@
 import { motion } from "framer-motion";
 import { Clock, MapPin, Navigation, Phone } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { branches, site, whatsappLink } from "@/lib/data";
+import { site, whatsappLink } from "@/lib/data";
 import Pattern from "@/components/ui/Pattern";
 import Ornament from "@/components/ui/Ornament";
 import Reveal from "@/components/ui/Reveal";
 import Khatam from "@/components/ui/Khatam";
 
-export default function BranchesClient() {
-  const { t } = useLanguage();
+type Branch = {
+  id: number;
+  number: string;
+  nameAr: string;
+  nameEn: string;
+  addressAr: string;
+  addressEn: string;
+  phone: string;
+  whatsapp: string;
+  mapsUrl: string;
+};
+
+export default function BranchesClient({ branches }: { branches: Branch[] }) {
+  const { t, lang } = useLanguage();
 
   return (
     <>
@@ -97,8 +109,8 @@ export default function BranchesClient() {
       {/* Branch cards */}
       <section className="bg-cream-50 pb-20">
         <div className="mx-auto grid max-w-7xl gap-7 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
-          {t.branches.list.map((branch, i) => (
-            <Reveal key={branch.name} delay={i * 0.1} className="h-full">
+          {branches.map((branch, i) => (
+            <Reveal key={branch.id} delay={i * 0.1} className="h-full">
               <article className="group flex h-full flex-col gap-5 rounded-3xl border border-cocoa-900/10 bg-cream-100/60 p-7 transition-all duration-500 hover:-translate-y-2 hover:border-brass-500/60 hover:bg-cream-100 hover:shadow-[0_30px_55px_-30px_rgba(41,26,14,0.45)]">
                 <div className="flex items-center gap-4">
                   <span className="grid size-14 shrink-0 place-items-center rounded-full bg-cocoa-800 text-brass-400 transition-transform duration-500 group-hover:scale-110">
@@ -106,11 +118,8 @@ export default function BranchesClient() {
                   </span>
                   <div>
                     <h2 className="font-display text-2xl font-bold text-cocoa-900">
-                      {branch.name}
+                      {lang === "ar" ? branch.nameAr : branch.nameEn}
                     </h2>
-                    <p className="text-xs font-extrabold uppercase tracking-widest text-brass-600">
-                      {branch.area}
-                    </p>
                   </div>
                 </div>
 
@@ -119,7 +128,7 @@ export default function BranchesClient() {
                     {t.branches.address}
                   </span>
                   <p className="text-base font-bold text-cocoa-800">
-                    {branch.address}
+                    {lang === "ar" ? branch.addressAr : branch.addressEn}
                   </p>
                 </div>
 
@@ -127,30 +136,25 @@ export default function BranchesClient() {
                   <span className="text-xs font-extrabold uppercase tracking-widest text-cocoa-400">
                     {t.branches.phone}
                   </span>
-                  <div className="flex flex-wrap gap-2">
-                    {branch.phones.map((phone) => (
-                      <a
-                        key={phone}
-                        href={`tel:${phone}`}
-                        dir="ltr"
-                        className="rounded-full border border-cocoa-900/15 bg-cream-50 px-3.5 py-1.5 text-sm font-bold text-cocoa-700 transition-colors duration-300 hover:border-brass-500 hover:text-brass-700"
-                      >
-                        {phone}
-                      </a>
-                    ))}
-                  </div>
+                  <a
+                    href={`tel:${branch.phone}`}
+                    dir="ltr"
+                    className="rounded-full border border-cocoa-900/15 bg-cream-50 px-3.5 py-1.5 text-sm font-bold text-cocoa-700 transition-colors duration-300 hover:border-brass-500 hover:text-brass-700 w-fit"
+                  >
+                    {branch.phone}
+                  </a>
                 </div>
 
                 <div className="mt-auto flex flex-wrap gap-2.5 pt-3">
                   <a
-                    href={`tel:${branch.phones[0]}`}
+                    href={`tel:${branch.phone}`}
                     className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-cocoa-800 px-4 py-2.5 text-sm font-extrabold text-cream-50 transition-colors duration-300 hover:bg-cocoa-700"
                   >
                     <Phone className="size-4 text-brass-400" />
                     {t.branches.call}
                   </a>
                   <a
-                    href={whatsappLink(t.whatsapp.message)}
+                    href={`https://wa.me/${branch.whatsapp}`}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-cocoa-800/15 px-4 py-2.5 text-sm font-extrabold text-cocoa-800 transition-colors duration-300 hover:border-brass-500 hover:text-brass-700"
@@ -158,7 +162,7 @@ export default function BranchesClient() {
                     {t.branches.whatsapp}
                   </a>
                   <a
-                    href={branches[i]?.mapUrl}
+                    href={branch.mapsUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-cocoa-800/15 px-4 py-2.5 text-sm font-extrabold text-cocoa-800 transition-colors duration-300 hover:border-brass-500 hover:text-brass-700"

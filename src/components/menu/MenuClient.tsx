@@ -1,21 +1,39 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { menu, site } from "@/lib/data";
+import { site } from "@/lib/data";
 import Pattern from "@/components/ui/Pattern";
 import Ornament from "@/components/ui/Ornament";
 import Reveal from "@/components/ui/Reveal";
 import Khatam from "@/components/ui/Khatam";
 
-export default function MenuClient() {
+type LocalizedText = { ar: string; en: string };
+type MenuItem = {
+  id: string;
+  name: LocalizedText;
+  desc: LocalizedText;
+  price?: number;
+  sizes?: { label: LocalizedText; price: number }[];
+  badge?: "popular" | "spicy" | "new";
+  image: string;
+};
+type MenuCategory = {
+  id: string;
+  name: LocalizedText;
+  tagline: LocalizedText;
+  image: string;
+  items: MenuItem[];
+};
+
+export default function MenuClient({ categories }: { categories: MenuCategory[] }) {
   const { t, lang } = useLanguage();
-  const [active, setActive] = useState(menu[0].id);
+  const [active, setActive] = useState(categories[0]?.id ?? "");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
-  // Scroll-spy: highlight the category currently in view.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,23 +43,27 @@ export default function MenuClient() {
       },
       { rootMargin: "-35% 0px -60% 0px" }
     );
-    for (const category of menu) {
+    for (const category of categories) {
       const el = sectionRefs.current[category.id];
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [categories]);
 
   const jumpTo = (id: string) => {
     setActive(id);
-    sectionRefs.current[id]?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const badgeLabel = (badge: "popular" | "spicy" | "new") =>
-    t.menu.badges[badge];
+  const badgeLabel = (badge: "popular" | "spicy" | "new") => t.menu.badges[badge];
+
+  if (categories.length === 0) {
+    return (
+      <section className="bg-cream-50 py-32 text-center">
+        <p className="text-cocoa-500">{lang === "ar" ? "المنيو غير متاح حالياً" : "Menu unavailable"}</p>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -83,7 +105,7 @@ export default function MenuClient() {
           className="mx-auto flex max-w-7xl gap-2.5 overflow-x-auto px-4 py-3.5 sm:px-6 lg:justify-center lg:px-8"
           style={{ scrollbarWidth: "none" }}
         >
-          {menu.map((category) => (
+          {categories.map((category) => (
             <button
               key={category.id}
               type="button"
@@ -103,7 +125,7 @@ export default function MenuClient() {
       {/* Categories */}
       <section className="bg-cream-50 py-16 lg:py-20">
         <div className="mx-auto flex max-w-6xl flex-col gap-20 px-4 sm:px-6 lg:px-8">
-          {menu.map((category) => (
+          {categories.map((category) => (
             <section
               key={category.id}
               id={category.id}
@@ -112,7 +134,17 @@ export default function MenuClient() {
               }}
               className="scroll-mt-40"
             >
+              {/* Category header with image */}
               <Reveal className="mb-10 flex flex-col items-center gap-3 text-center">
+                <div className="relative h-20 w-20 overflow-hidden rounded-full ring-2 ring-brass-500/30 ring-offset-4 ring-offset-cream-50">
+                  <Image
+                    src={category.image}
+                    alt={category.name[lang]}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
                 <h2 className="font-display text-4xl font-bold text-cocoa-900">
                   {category.name[lang]}
                 </h2>
@@ -122,74 +154,79 @@ export default function MenuClient() {
                 <Ornament className="mt-1 w-44 text-cocoa-400" />
               </Reveal>
 
-              <div className="grid gap-x-14 gap-y-9 lg:grid-cols-2">
+              {/* Menu items grid with images */}
+              <div className="grid gap-5 sm:grid-cols-2">
                 {category.items.map((item, i) => (
                   <Reveal key={item.id} delay={Math.min(i * 0.05, 0.25)}>
-                    <article className="group">
-                      <div className="flex items-baseline gap-3">
-                        <h3 className="font-display text-xl font-bold text-cocoa-900 transition-colors duration-300 group-hover:text-brass-700">
-                          {item.name[lang]}
-                        </h3>
-                        {item.badge ? (
-                          <span
-                            className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-extrabold ${
-                              item.badge === "spicy"
-                                ? "bg-red-900/10 text-red-800"
-                                : item.badge === "new"
-                                  ? "bg-emerald-900/10 text-emerald-800"
-                                  : "bg-brass-500/15 text-brass-700"
-                            }`}
-                          >
-                            {badgeLabel(item.badge)}
-                          </span>
-                        ) : null}
-                        {item.price != null && (
-                          <>
+                    <motion.article
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      className="group flex gap-4 rounded-2xl border border-cocoa-900/8 bg-cream-100/60 p-4 transition-all duration-300 hover:border-brass-500/30 hover:bg-cream-100 hover:shadow-[var(--shadow-elevation-low)]"
+                    >
+                      {/* Item image */}
+                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
+                        <Image
+                          src={item.image}
+                          alt={item.name[lang]}
+                          fill
+                          sizes="96px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+
+                      {/* Item content */}
+                      <div className="flex min-w-0 flex-1 flex-col">
+                        <div className="flex items-start gap-2">
+                          <h3 className="font-display text-lg font-bold text-cocoa-900 transition-colors duration-300 group-hover:text-brass-700">
+                            {item.name[lang]}
+                          </h3>
+                          {item.badge ? (
                             <span
-                              className="flex-1 -translate-y-1 border-b-2 border-dotted border-cocoa-300/80"
-                              aria-hidden="true"
-                            />
-                            <span className="shrink-0 font-display text-xl font-bold text-brass-600">
+                              className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-extrabold ${
+                                item.badge === "spicy"
+                                  ? "bg-red-900/10 text-red-800"
+                                  : item.badge === "new"
+                                    ? "bg-emerald-900/10 text-emerald-800"
+                                    : "bg-brass-500/15 text-brass-700"
+                              }`}
+                            >
+                              {badgeLabel(item.badge)}
+                            </span>
+                          ) : null}
+                        </div>
+
+                        {item.desc ? (
+                          <p className="mt-1 text-xs leading-relaxed text-cocoa-500 line-clamp-2">
+                            {item.desc[lang]}
+                          </p>
+                        ) : null}
+
+                        {/* Price / sizes */}
+                        <div className="mt-auto pt-2">
+                          {item.sizes ? (
+                            <div className="flex flex-wrap gap-2">
+                              {item.sizes.map((size) => (
+                                <span
+                                  key={size.label.en}
+                                  className="rounded-full bg-brass-500/10 px-2.5 py-1 text-[11px] font-bold text-brass-700"
+                                >
+                                  {size.label[lang]}{" "}
+                                  <span dir="ltr">{size.price}</span>{" "}
+                                  {t.menu.currency}
+                                </span>
+                              ))}
+                            </div>
+                          ) : item.price != null ? (
+                            <p className="font-display text-xl font-bold text-brass-600">
                               <span dir="ltr">{item.price}</span>{" "}
                               <span className="text-xs font-medium text-cocoa-400">
                                 {t.menu.currency}
                               </span>
-                            </span>
-                          </>
-                        )}
-                      </div>
-
-                      {item.desc ? (
-                        <p className="mt-1.5 max-w-md text-sm leading-relaxed text-cocoa-500">
-                          {item.desc[lang]}
-                        </p>
-                      ) : null}
-
-                      {item.sizes ? (
-                        <div className="mt-3 flex flex-col gap-2">
-                          {item.sizes.map((size) => (
-                            <div
-                              key={size.label.en}
-                              className="flex items-baseline gap-3 text-sm"
-                            >
-                              <span className="font-bold text-cocoa-700">
-                                {size.label[lang]}
-                              </span>
-                              <span
-                                className="flex-1 -translate-y-1 border-b border-dotted border-cocoa-300/70"
-                                aria-hidden="true"
-                              />
-                              <span className="font-display text-base font-bold text-brass-600">
-                                <span dir="ltr">{size.price}</span>{" "}
-                                <span className="text-[11px] font-medium text-cocoa-400">
-                                  {t.menu.currency}
-                                </span>
-                              </span>
-                            </div>
-                          ))}
+                            </p>
+                          ) : null}
                         </div>
-                      ) : null}
-                    </article>
+                      </div>
+                    </motion.article>
                   </Reveal>
                 ))}
               </div>
