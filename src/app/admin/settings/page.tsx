@@ -14,7 +14,7 @@ export default async function AdminSettingsPage() {
       <div className="flex-1 p-4 pt-16 lg:p-10 lg:pt-10">
         <div>
           <h1 className="text-2xl font-black text-cream"><T k="settingsTitle" /></h1>
-          <p className="mt-1 text-sm text-cream/60"><T k="systemConfig" /></p>
+          <p className="mt-1 text-sm text-cream"><T k="systemConfig" /></p>
         </div>
         <SettingsForm settings={map} />
       </div>

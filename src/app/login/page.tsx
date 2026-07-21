@@ -57,7 +57,7 @@ export default function AdminLogin() {
           {/* Title */}
           <div className="mt-6 text-center">
             <h1 className="text-[22px] font-bold tracking-tight text-cream">{t.adminPanel}</h1>
-            <p className="mt-1.5 text-[13px] font-medium text-cream/60">جيت بوتك — إدارة</p>
+            <p className="mt-1.5 text-[13px] font-medium text-cream">جيت بوتك — إدارة</p>
           </div>
 
           {/* Form */}
@@ -69,27 +69,27 @@ export default function AdminLogin() {
             )}
 
             <label className="grid gap-2">
-              <span className="text-[13px] font-semibold text-cream/70">{t.email}</span>
+              <span className="text-[13px] font-semibold text-cream">{t.email}</span>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
-                className="login-input h-12 rounded-xl border border-white/[0.12] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream/45 focus:outline-none"
+                className="login-input h-12 rounded-xl border border-white/[0.12] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream focus:outline-none"
                 placeholder="admin@getboatkeg.com"
               />
             </label>
 
             <label className="grid gap-2">
-              <span className="text-[13px] font-semibold text-cream/70">{t.password}</span>
+              <span className="text-[13px] font-semibold text-cream">{t.password}</span>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="current-password"
-                className="login-input h-12 rounded-xl border border-white/[0.12] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream/45 focus:outline-none"
+                className="login-input h-12 rounded-xl border border-white/[0.12] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream focus:outline-none"
               />
             </label>
 
@@ -114,7 +114,7 @@ export default function AdminLogin() {
         <div className="border-t border-white/[0.05] bg-cocoa-950/30 px-8 py-4">
           <Link
             href="/"
-            className="flex items-center justify-center gap-2 text-[13px] font-medium text-cream/55 transition-colors hover:text-cream/80"
+            className="flex items-center justify-center gap-2 text-[13px] font-medium text-cream transition-colors hover:text-cream"
           >
             <ArrowLeft size={14} />
             {t.backToDashboard}

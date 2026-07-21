@@ -51,7 +51,7 @@ export default async function AdminDashboard() {
                 <h1 className="text-[22px] font-bold tracking-tight text-cream">
                   <T k="dashboardTitle" />
                 </h1>
-                <p className="mt-0.5 flex items-center gap-1.5 text-[13px] font-medium text-cream/60">
+                <p className="mt-0.5 flex items-center gap-1.5 text-[13px] font-medium text-cream">
                   <CalendarDays size={13} />
                   {today}
                 </p>
@@ -93,7 +93,7 @@ export default async function AdminDashboard() {
 
           {/* Quick Actions */}
           <div className="mt-8">
-            <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-cream/55">
+            <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-cream">
               <T k="quickActions" />
             </h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,12 +178,12 @@ function StatCard({
         </div>
       </div>
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-[12px] font-semibold uppercase tracking-wider text-cream/60">
+        <p className="text-[12px] font-semibold uppercase tracking-wider text-cream">
           <T k={labelKey} />
         </p>
         <ArrowUpRight
           size={14}
-          className="text-cream/30 transition-all duration-300 group-hover:text-cream/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          className="text-cream transition-all duration-300 group-hover:text-cream group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
         />
       </div>
     </Link>
@@ -210,16 +210,16 @@ function QuickAction({
         <Icon size={18} className="text-brass-400 transition-colors duration-300 group-hover:text-brass-300" strokeWidth={2} />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[13px] font-semibold text-cream/80 transition-colors duration-300 group-hover:text-cream">
+        <p className="text-[13px] font-semibold text-cream transition-colors duration-300 group-hover:text-cream">
           <T k={labelKey} />
         </p>
-        <p className="mt-0.5 text-[12px] font-medium text-cream/50">
+        <p className="mt-0.5 text-[12px] font-medium text-cream">
           <T k={descriptionKey} />
         </p>
       </div>
       <ArrowUpRight
         size={16}
-        className="shrink-0 text-cream/30 transition-all duration-300 group-hover:text-cream/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        className="shrink-0 text-cream transition-all duration-300 group-hover:text-cream group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
       />
     </Link>
   );

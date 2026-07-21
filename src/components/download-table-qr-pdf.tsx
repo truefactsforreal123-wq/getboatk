@@ -75,7 +75,7 @@ export function DownloadTableQRPDF({
     <button
       onClick={downloadPDF}
       disabled={loading}
-      className="flex items-center gap-1.5 rounded-lg bg-white/5 px-3 py-2 text-xs font-bold text-cream/55 hover:bg-white/10 hover:text-cream transition-colors disabled:opacity-40"
+      className="flex items-center gap-1.5 rounded-lg bg-white/5 px-3 py-2 text-xs font-bold text-cream hover:bg-white/10 hover:text-cream transition-colors disabled:opacity-40"
     >
       <FileDown size={14} />
       {loading ? "..." : "PDF"}

@@ -22,7 +22,7 @@ export default async function AdminMenu() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-black text-cream"><T k="menuEditor" /></h1>
-            <p className="mt-1 text-sm text-cream/60">
+            <p className="mt-1 text-sm text-cream">
               {categories.length} <T k="categories" />, {categories.reduce((s, c) => s + c.items.length, 0)} <T k="items" />
             </p>
           </div>

@@ -40,7 +40,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
     <div className="mt-8 max-w-lg space-y-6">
       <div className="rounded-xl border border-white/15 bg-ink-900 p-6">
         <label className="text-base font-black text-cream">{t.liveTracking}</label>
-        <p className="mt-2 text-sm text-cream/60">
+        <p className="mt-2 text-sm text-cream">
           {t.liveTrackingDesc}
         </p>
         <div className="mt-3 flex items-center gap-3">
@@ -53,7 +53,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
             className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-colors ${
               liveTracking
                 ? "bg-green-500/15 text-green-400"
-                : "bg-white/5 text-cream/55"
+                : "bg-white/5 text-cream"
             }`}
           >
             {liveTracking ? t.on : t.off}
@@ -63,7 +63,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
 
       <div className="rounded-xl border border-white/15 bg-ink-900 p-6">
         <label className="text-base font-black text-cream">{t.soundAlerts}</label>
-        <p className="mt-2 text-sm text-cream/60">
+        <p className="mt-2 text-sm text-cream">
           {t.soundAlertsDesc}
         </p>
         <div className="mt-3 flex items-center gap-3">
@@ -78,7 +78,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
             className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-colors ${
               soundAlerts
                 ? "bg-green-500/15 text-green-400"
-                : "bg-white/5 text-cream/55"
+                : "bg-white/5 text-cream"
             }`}
           >
             {soundAlerts ? t.on : t.off}
@@ -90,7 +90,7 @@ export function SettingsForm({ settings }: { settings: Record<string, unknown> }
         <label className="text-base font-black text-cream">
           {lang === "ar" ? "إعادة توليد جميع رموز QR" : "Regenerate All QR Codes"}
         </label>
-        <p className="mt-2 text-sm text-cream/60">
+        <p className="mt-2 text-sm text-cream">
           {lang === "ar"
             ? "سيؤدي هذا إلى إلغاء صلاحية جميع رموز QR الحالية في جميع الفروع. يجب إعادة طباعة كل رمز QR جديد."
             : "This will invalidate all current QR codes across all branches. You'll need to re-print every QR code."}

@@ -44,7 +44,7 @@ export function Sidebar() {
     return `sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold transition-all duration-200 ${
       active
         ? "sidebar-link-active bg-brass-500/[0.12] text-brass-400"
-        : "text-cream/70 hover:bg-white/[0.08] hover:text-cream/90"
+        : "text-cream hover:bg-white/[0.08] hover:text-cream"
     }`;
   }
 
@@ -61,8 +61,8 @@ export function Sidebar() {
           <Image src="/logo.jpg" alt="" width={32} height={32} className="rounded-lg" />
         </div>
         <div className="flex flex-col">
-          <span className="text-[13px] font-bold text-cream/90">{ta.adminPanel}</span>
-          <span className="text-[11px] font-medium text-cream/55">جيت بوتك</span>
+          <span className="text-[13px] font-bold text-cream">{ta.adminPanel}</span>
+          <span className="text-[11px] font-medium text-cream">جيت بوتك</span>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ export function Sidebar() {
         <div className="space-y-0.5">
           <button
             onClick={toggleLang}
-            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-white/[0.08] hover:text-cream/90"
+            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream transition-all duration-200 hover:bg-white/[0.08] hover:text-cream"
           >
             <Languages size={18} strokeWidth={2} />
             {ta.language}
@@ -98,14 +98,14 @@ export function Sidebar() {
           <a
             href="/"
             target="_blank"
-            className="sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-white/[0.08] hover:text-cream/90"
+            className="sidebar-link flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream transition-all duration-200 hover:bg-white/[0.08] hover:text-cream"
           >
             <Flame size={18} strokeWidth={2} />
             {ta.viewSite}
           </a>
           <button
             onClick={() => signOut()}
-            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream/70 transition-all duration-200 hover:bg-red-500/[0.08] hover:text-red-400/80"
+            className="sidebar-link flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-[13px] font-semibold text-cream transition-all duration-200 hover:bg-red-500/[0.08] hover:text-red-400/80"
           >
             <LogOut size={18} strokeWidth={2} />
             {ta.signOut}
@@ -120,7 +120,7 @@ export function Sidebar() {
       {/* Mobile toggle */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-cocoa-900/90 text-cream/70 backdrop-blur-sm lg:hidden"
+        className="fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-cocoa-900/90 text-cream backdrop-blur-sm lg:hidden"
         aria-label="Open menu"
       >
         <Menu size={18} />
@@ -147,7 +147,7 @@ export function Sidebar() {
       >
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-lg text-cream/55 transition-colors hover:text-cream/90"
+          className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-lg text-cream transition-colors hover:text-cream"
           aria-label="Close menu"
         >
           <X size={18} />

@@ -28,7 +28,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
   }, [initial, branchFilter]);
 
   if (initial.length === 0) {
-    return <p className="mt-8 text-sm text-cream/55">{t.noReviews}</p>;
+    return <p className="mt-8 text-sm text-cream">{t.noReviews}</p>;
   }
 
   return (
@@ -45,7 +45,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
               <option key={b.id} value={String(b.id)}>{b.nameAr}</option>
             ))}
           </select>
-          <span className="text-xs text-cream/55">{filtered.length} {t.reviews}</span>
+          <span className="text-xs text-cream">{filtered.length} {t.reviews}</span>
         </div>
       )}
 
@@ -63,8 +63,8 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
                   <Star key={i} size={14} fill={i < r.rating ? "#F5B942" : "none"} className={i < r.rating ? "text-gold-300" : "text-ink-700"} />
                 ))}
               </div>
-              <p className="mt-2 text-sm leading-6 text-cream/55 break-all">{r.text}</p>
-              <p className="mt-2 text-xs text-cream/70">{new Date(r.createdAt).toLocaleDateString()}</p>
+              <p className="mt-2 text-sm leading-6 text-cream break-all">{r.text}</p>
+              <p className="mt-2 text-xs text-cream">{new Date(r.createdAt).toLocaleDateString()}</p>
             </div>
             <div className="flex gap-1 shrink-0">
               {!r.approved && (
@@ -94,7 +94,7 @@ export function ReviewsEditor({ reviews: initial, branches }: { reviews: Review[
                     alert("Failed. Please try again.");
                   }
                 }}
-                className="grid h-8 w-8 place-items-center rounded-lg text-cream/70 hover:text-red-400"
+                className="grid h-8 w-8 place-items-center rounded-lg text-cream hover:text-red-400"
               >
                 <Trash2 size={15} />
               </button>
