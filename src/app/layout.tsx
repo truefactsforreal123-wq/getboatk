@@ -3,6 +3,7 @@ import { Amiri, Tajawal } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import LayoutChrome from "@/components/layout/LayoutChrome";
+import { OrderAlertAudioUnlock } from "./OrderAlertAudioUnlock";
 
 const amiri = Amiri({
   weight: ["400", "700"],
@@ -61,6 +62,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           المحتوى الرئيسي
         </a>
+        <OrderAlertAudioUnlock />
 
         <LanguageProvider>
           <LayoutChrome>

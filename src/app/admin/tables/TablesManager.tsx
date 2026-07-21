@@ -80,84 +80,97 @@ export function TablesManager({
   }
 
   return (
-    <div className="mt-8 space-y-5">
+    <div className="mt-8 space-y-6">
       {branches.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-white/10 bg-ink-900 p-12 text-center">
-          <p className="text-base font-bold text-cream">{t.noBranches}</p>
-          <p className="mt-1 text-sm text-cream">{t.goToBranches}</p>
-          <a href="/admin/branches" className="mt-4 inline-flex brand-button text-sm">{t.goToBranches}</a>
+        <div className="rounded-2xl border border-dashed border-white/10 bg-cocoa-900/60 p-16 text-center">
+          <p className="text-lg font-bold text-cream">{t.noBranches}</p>
+          <p className="mt-2 text-sm text-cocoa-300">{t.goToBranches}</p>
+          <a href="/admin/branches" className="mt-6 inline-flex brand-button text-sm">{t.goToBranches}</a>
         </div>
       ) : (
       <>
-      {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-3">
-        <select
-          value={selectedBranch}
-          onChange={(e) => setSelectedBranch(Number(e.target.value))}
-          className="rounded-lg border border-white/10 bg-ink-900 px-4 py-2.5 text-sm font-bold text-cream"
-        >
-          {branches.map((b) => (
-            <option key={b.id} value={b.id}>{b.nameEn}</option>
-          ))}
-        </select>
+      {/* Header Section */}
+      <div className="rounded-2xl border border-white/8 bg-cocoa-900/60 p-6">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          {/* Left: Branch selector + count */}
+          <div className="flex items-center gap-4">
+            <select
+              value={selectedBranch}
+              onChange={(e) => setSelectedBranch(Number(e.target.value))}
+              className="rounded-xl border border-white/10 bg-cocoa-950 px-5 py-3 text-base font-bold text-cream min-w-[180px]"
+            >
+              {branches.map((b) => (
+                <option key={b.id} value={b.id}>{b.nameEn}</option>
+              ))}
+            </select>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-black text-brass-400">{filtered.length}</span>
+              <span className="text-sm font-bold text-cocoa-300">
+                {lang === "ar" ? "طاولة" : "tables"}
+              </span>
+            </div>
+          </div>
 
-        <span className="text-sm font-bold text-cream">
-          {filtered.length} {lang === "ar" ? "طاولة" : "tables"}
-        </span>
+          {/* Right: Action buttons */}
+          <div className="flex flex-wrap items-center gap-3">
+            <DownloadAllQRPDF
+              tables={filtered.map((tbl) => ({
+                tableNumber: tbl.tableNumber,
+                qrToken: tbl.qrToken,
+                branchNameEn: activeBranch?.nameEn ?? "",
+              }))}
+              branchName={activeBranch?.nameEn ?? ""}
+            />
 
-        <div className="flex-1" />
+            <a
+              href={`/admin/tables/print?branch=${selectedBranch}&autoPrint=1`}
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-cocoa-800 px-5 py-3 text-sm font-bold text-cream hover:bg-cocoa-700 hover:border-white/15 transition-all"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 6 2 18 2 18 9"/>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                <rect width="12" height="8" x="6" y="14"/>
+              </svg>
+              {lang === "ar" ? "طباعة" : "Print"}
+            </a>
 
-        <DownloadAllQRPDF
-          tables={filtered.map((tbl) => ({
-            tableNumber: tbl.tableNumber,
-            qrToken: tbl.qrToken,
-            branchNameEn: activeBranch?.nameEn ?? "",
-          }))}
-          branchName={activeBranch?.nameEn ?? ""}
-        />
-
-        <a
-          href={`/admin/tables/print?branch=${selectedBranch}&autoPrint=1`}
-          className="flex items-center gap-1.5 rounded-lg bg-white/5 px-3 py-2 text-xs font-bold text-cream hover:bg-white/10 hover:text-cream transition-colors"
-        >
-          {lang === "ar" ? "طباعة" : "Print"}
-        </a>
-
-        <button
-          onClick={() => { setShowAdd(!showAdd); setAddMode("single"); }}
-          className="brand-button text-sm"
-        >
-          <Plus size={16} />
-          {lang === "ar" ? "إضافة طاولة" : "Add Table"}
-        </button>
+            <button
+              onClick={() => { setShowAdd(!showAdd); setAddMode("single"); }}
+              className="brand-button text-sm"
+            >
+              <Plus size={18} />
+              {lang === "ar" ? "إضافة طاولة" : "Add Table"}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Add Table Panel */}
       {showAdd && (
-        <div className="rounded-xl border border-white/8 bg-ink-900 p-5 space-y-4">
+        <div className="rounded-2xl border border-brass-500/20 bg-cocoa-900/80 p-6 space-y-5">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-black text-cream">
+            <h3 className="text-base font-black text-cream">
               {lang === "ar" ? `إضافة لـ ${activeBranch?.nameAr}` : `Add to ${activeBranch?.nameEn}`}
             </h3>
-            <button onClick={() => setShowAdd(false)} className="text-cream hover:text-cream">
-              <X size={16} />
+            <button onClick={() => setShowAdd(false)} className="rounded-lg p-2 text-cocoa-300 hover:text-cream hover:bg-white/5 transition-colors">
+              <X size={18} />
             </button>
           </div>
 
           {/* Mode Toggle */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 p-1 bg-cocoa-950/50 rounded-xl w-fit">
             <button
               onClick={() => setAddMode("single")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
-                addMode === "single" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream"
+              className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-all ${
+                addMode === "single" ? "bg-brass-500/20 text-brass-300 shadow-sm" : "text-cocoa-300 hover:text-cream"
               }`}
             >
               {lang === "ar" ? "طاولة واحدة" : "Single Table"}
             </button>
             <button
               onClick={() => setAddMode("batch")}
-              className={`rounded-lg px-4 py-2 text-sm font-bold transition-colors ${
-                addMode === "batch" ? "bg-brand-500/15 text-gold-300" : "bg-white/5 text-cream"
+              className={`rounded-lg px-5 py-2.5 text-sm font-bold transition-all ${
+                addMode === "batch" ? "bg-brass-500/20 text-brass-300 shadow-sm" : "text-cocoa-300 hover:text-cream"
               }`}
             >
               {lang === "ar" ? "عدة طاولات" : "Multiple Tables"}
@@ -165,26 +178,28 @@ export function TablesManager({
           </div>
 
           {addMode === "single" ? (
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-bold text-cream">
-                {lang === "ar" ? "رقم" : "#"}
-              </span>
-              <input
-                type="number"
-                min={1}
-                value={newTableNum}
-                onChange={(e) => setNewTableNum(e.target.value)}
-                placeholder={String(nextTableNum)}
-                className="w-28 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream"
-              />
+            <div className="flex items-end gap-4">
+              <div>
+                <label className="text-xs font-bold text-cocoa-300 mb-2 block">
+                  {lang === "ar" ? "رقم الطاولة" : "Table Number"}
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  value={newTableNum}
+                  onChange={(e) => setNewTableNum(e.target.value)}
+                  placeholder={String(nextTableNum)}
+                  className="w-32 rounded-xl border border-white/10 bg-cocoa-950 px-5 py-3 text-lg font-bold text-cream placeholder:text-cocoa-400"
+                />
+              </div>
               <button onClick={handleCreate} className="brand-button text-sm">
                 {t.create}
               </button>
             </div>
           ) : (
-            <div className="flex flex-wrap items-end gap-4">
+            <div className="flex flex-wrap items-end gap-5">
               <div>
-                <label className="text-xs font-bold text-cream mb-1 block">
+                <label className="text-xs font-bold text-cocoa-300 mb-2 block">
                   {lang === "ar" ? "ابدأ من رقم" : "Start from #"}
                 </label>
                 <input
@@ -193,11 +208,11 @@ export function TablesManager({
                   value={batchStart}
                   onChange={(e) => setBatchStart(e.target.value)}
                   placeholder={String(nextTableNum)}
-                  className="w-24 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream"
+                  className="w-28 rounded-xl border border-white/10 bg-cocoa-950 px-5 py-3 text-lg font-bold text-cream placeholder:text-cocoa-400"
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-cream mb-1 block">
+                <label className="text-xs font-bold text-cocoa-300 mb-2 block">
                   {lang === "ar" ? "العدد" : "Count"}
                 </label>
                 <input
@@ -206,7 +221,7 @@ export function TablesManager({
                   max={500}
                   value={batchCount}
                   onChange={(e) => setBatchCount(e.target.value)}
-                  className="w-24 rounded-lg border border-white/10 bg-ink-950 px-4 py-2.5 text-base font-bold text-cream placeholder:text-cream"
+                  className="w-28 rounded-xl border border-white/10 bg-cocoa-950 px-5 py-3 text-lg font-bold text-cream placeholder:text-cocoa-400"
                 />
               </div>
               <button onClick={handleBatchGenerate} className="brand-button text-sm">
@@ -217,36 +232,47 @@ export function TablesManager({
         </div>
       )}
 
-      {/* Table Cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {/* Table Cards Grid */}
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((table) => (
           <div
             key={table.id}
-            className={`group rounded-xl border p-5 transition-all hover:scale-[1.01] ${
+            className={`group rounded-2xl border p-6 transition-all ${
               table.isActive
-                ? "border-white/8 bg-ink-900 hover:border-white/15"
+                ? "border-white/8 bg-cocoa-900/60 hover:border-brass-500/20 hover:bg-cocoa-900/80"
                 : "border-red-500/20 bg-red-500/5 opacity-60"
             }`}
           >
+            {/* Card Header */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="text-xl font-black text-cream">
-                  {t.table} {table.tableNumber}
-                </span>
-                {!table.isActive && (
-                  <span className="rounded-md bg-red-500/15 px-2 py-0.5 text-[10px] font-black text-red-400">
-                    {t.inactive}
-                  </span>
-                )}
+              <div className="flex items-center gap-3">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl text-lg font-black ${
+                  table.isActive
+                    ? "bg-brass-500/15 text-brass-400"
+                    : "bg-red-500/15 text-red-400"
+                }`}>
+                  {table.tableNumber}
+                </div>
+                <div>
+                  <p className="text-lg font-black text-cream">
+                    {t.table} {table.tableNumber}
+                  </p>
+                  {!table.isActive && (
+                    <span className="inline-block mt-1 rounded-md bg-red-500/15 px-2 py-0.5 text-[10px] font-black text-red-400 uppercase tracking-wider">
+                      {t.inactive}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            {/* Card Actions */}
+            <div className="mt-5 flex flex-wrap gap-2.5">
               <a
                 href={`/admin/tables/print?table=${table.id}&autoPrint=1`}
-                className="flex items-center gap-1.5 rounded-lg bg-gold-500/10 px-3 py-2 text-xs font-bold text-gold-300 hover:bg-gold-500/20 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl bg-brass-500/10 px-4 py-2.5 text-sm font-bold text-brass-400 hover:bg-brass-500/20 transition-colors"
               >
-                <QrCode size={14} />
+                <QrCode size={16} />
                 QR
               </a>
 
@@ -259,7 +285,7 @@ export function TablesManager({
 
               <button
                 onClick={() => handleToggle(table.id)}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors ${
+                className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors ${
                   table.isActive
                     ? "bg-white/5 text-cream hover:bg-red-500/15 hover:text-red-400"
                     : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
@@ -267,12 +293,12 @@ export function TablesManager({
               >
                 {table.isActive ? (
                   <>
-                    <PowerOff size={14} />
+                    <PowerOff size={16} />
                     {t.deactivate}
                   </>
                 ) : (
                   <>
-                    <Power size={14} />
+                    <Power size={16} />
                     {t.activate}
                   </>
                 )}
@@ -282,9 +308,10 @@ export function TablesManager({
         ))}
 
         {filtered.length === 0 && (
-          <p className="col-span-full py-12 text-center text-base text-cream">
-            {t.noTables}
-          </p>
+          <div className="col-span-full rounded-2xl border border-dashed border-white/10 bg-cocoa-900/40 py-16 text-center">
+            <QrCode size={48} className="mx-auto mb-4 text-cocoa-600" />
+            <p className="text-base font-bold text-cream">{t.noTables}</p>
+          </div>
         )}
       </div>
       </>

@@ -30,6 +30,7 @@ export function unlockOrderAlertAudio() {
     audioContext ??= new AudioContext();
     const context = audioContext;
 
+    console.log("[Audio] Unlocking. Context state:", context.state);
     if (context.state === "suspended") void context.resume();
 
     // Starting a silent source inside the gesture permanently unlocks Web Audio.
@@ -41,19 +42,24 @@ export function unlockOrderAlertAudio() {
     gain.connect(context.destination);
     source.start();
 
+    console.log("[Audio] Unlock successful. Preloading buffer...");
     void loadAlertBuffer(context).catch((error) => {
-      console.warn("Order announcement preload failed:", error);
+      console.warn("[Audio] Preload failed:", error);
     });
   } catch (error) {
-    console.warn("Order announcement unlock failed:", error);
+    console.warn("[Audio] Unlock failed:", error);
   }
 }
 
 export async function playOrderAlertSound() {
   try {
     const context = audioContext;
-    if (!context) return;
+    if (!context) {
+      console.warn("[Audio] Cannot play — no AudioContext (unlock not called?)");
+      return;
+    }
 
+    console.log("[Audio] Playing. Context state:", context.state);
     if (context.state === "suspended") await context.resume();
     const buffer = await loadAlertBuffer(context);
 
@@ -70,7 +76,8 @@ export async function playOrderAlertSound() {
     });
     currentSource = source;
     source.start();
+    console.log("[Audio] Sound started successfully");
   } catch (error) {
-    console.warn("Order announcement failed:", error);
+    console.warn("[Audio] Play failed:", error);
   }
 }
