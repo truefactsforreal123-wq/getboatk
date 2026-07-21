@@ -118,9 +118,11 @@ body {
 /* ── Admin Dashboard Styles ── */
 /* Maps old color tokens to new project palette */
 .bg-ink-950 { background-color: var(--color-cocoa-950); }
+.text-ink-950 { color: var(--color-cocoa-950); }
 .bg-ink-900 { background-color: var(--color-cocoa-900); }
 .bg-ink-800 { background-color: var(--color-cocoa-800); }
 .bg-ink-700 { background-color: var(--color-cocoa-700); }
+.text-ink-700 { color: var(--color-cocoa-700); }
 
 .text-cream { color: var(--color-cream-50); }
 

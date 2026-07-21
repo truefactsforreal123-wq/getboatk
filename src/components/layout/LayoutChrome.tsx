@@ -18,14 +18,18 @@ export default function LayoutChrome({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const showChrome = isPublicPath(pathname);
 
+  if (!showChrome) {
+    return <>{children}</>;
+  }
+
   return (
     <>
-      {showChrome && <Navbar />}
+      <Navbar />
       <main id="main-content" className="flex-1" tabIndex={-1}>
         {children}
       </main>
-      {showChrome && <Footer />}
-      {showChrome && <WhatsAppFloat />}
+      <Footer />
+      <WhatsAppFloat />
     </>
   );
 }

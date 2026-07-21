@@ -19,7 +19,7 @@ export default async function AdminTablesPage() {
         <div>
           <h1 className="text-2xl font-black text-cream"><T k="tablesTitle" /></h1>
           <p className="mt-1 text-sm text-cream/45">
-            {tables.length} <T k="tables" /> في {branches.length} <T k="branches" />
+            {tables.length} <T k="tables" /> <T k="inWord" /> {branches.length} <T k="branches" />
           </p>
         </div>
         <TablesManager tables={tables} branches={branches} />

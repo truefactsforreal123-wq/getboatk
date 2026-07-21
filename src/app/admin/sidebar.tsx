@@ -63,7 +63,7 @@ export function Sidebar() {
             <Icon size={18} />
             {label}
             {href === "/admin/orders" && unseenOrders > 0 && (
-              <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-[10px] font-black text-white">
+              <span className="me-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-[10px] font-black text-white">
                 {unseenOrders > 99 ? "99+" : unseenOrders}
               </span>
             )}
@@ -91,7 +91,7 @@ export function Sidebar() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-4 left-4 z-50 rounded-lg bg-ink-900 border border-white/10 p-2 text-cream lg:hidden"
+        className="fixed top-4 right-4 z-50 rounded-lg bg-ink-900 border border-white/10 p-2 text-cream lg:hidden"
         aria-label="Open menu"
       >
         <Menu size={22} />
@@ -109,13 +109,13 @@ export function Sidebar() {
       </aside>
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-ink-900 border-e border-white/8 transition-transform duration-200 lg:hidden ${
-          open ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 right-0 z-50 flex w-64 flex-col bg-ink-900 border-e border-white/8 transition-transform duration-200 lg:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-4 right-4 rounded-lg p-1 text-cream/55 hover:text-cream"
+          className="absolute top-4 left-4 rounded-lg p-1 text-cream/55 hover:text-cream"
           aria-label="Close menu"
         >
           <X size={20} />

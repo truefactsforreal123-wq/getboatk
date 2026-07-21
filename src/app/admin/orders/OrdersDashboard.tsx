@@ -318,9 +318,9 @@ export function OrdersDashboard({
 
                         <div className="mt-2">
                           <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-black ${statusInfo.color}`}>
-                            {order.status === "submitted" && <Bell size={12} className="mr-1" />}
-                            {order.status === "preparing" && <ChefHat size={12} className="mr-1" />}
-                            {order.status === "ready" && <PackageCheck size={12} className="mr-1" />}
+                            {order.status === "submitted" && <Bell size={12} className="ms-1" />}
+                            {order.status === "preparing" && <ChefHat size={12} className="ms-1" />}
+                            {order.status === "ready" && <PackageCheck size={12} className="ms-1" />}
                             {statusInfo.label}
                           </span>
                         </div>
@@ -335,7 +335,7 @@ export function OrdersDashboard({
                                 {item.selectedSize &&
                                   typeof item.selectedSize === "object" &&
                                   item.selectedSize !== null && (
-                                    <span className="text-cream font-bold ml-1">
+                                    <span className="text-cream font-bold ms-1">
                                       ({(item.selectedSize as { label?: { ar?: string; en?: string } }).label?.[lang] ?? (item.selectedSize as { label?: { ar?: string; en?: string } }).label?.en ?? ""})
                                     </span>
                                   )}
@@ -352,12 +352,12 @@ export function OrdersDashboard({
                                   </div>
                                 )}
                                 {item.notes && (
-                                  <span className="text-cream/35 italic ml-1 text-sm">
+                                  <span className="text-cream/35 italic ms-1 text-sm">
                                     — &quot;{item.notes}&quot;
                                   </span>
                                 )}
                               </div>
-                              <span className="text-cream/45 shrink-0 ml-2 font-bold text-sm">
+                              <span className="text-cream/45 shrink-0 ms-2 font-bold text-sm">
                                 {Number(item.priceAtOrder)} LE
                               </span>
                             </div>
@@ -447,13 +447,13 @@ export function OrdersDashboard({
                           {item.selectedSize &&
                             typeof item.selectedSize === "object" &&
                             item.selectedSize !== null && (
-                              <span className="text-cream/75 ml-1">
+                              <span className="text-cream/75 ms-1">
                                 ({(item.selectedSize as { label?: { ar?: string; en?: string } }).label?.[lang] ?? (item.selectedSize as { label?: { ar?: string; en?: string } }).label?.en ?? ""})
                               </span>
                             )}
                         </span>
                       </div>
-                      <span className="text-cream/35 shrink-0 ml-2 text-sm">{Number(item.priceAtOrder)} LE</span>
+                      <span className="text-cream/35 shrink-0 ms-2 text-sm">{Number(item.priceAtOrder)} LE</span>
                     </div>
                   ))}
                 </div>

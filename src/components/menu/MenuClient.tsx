@@ -155,60 +155,74 @@ export default function MenuClient({ categories }: { categories: MenuCategory[] 
               </Reveal>
 
               {/* Menu items grid with images */}
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-6 sm:grid-cols-2">
                 {category.items.map((item, i) => (
                   <Reveal key={item.id} delay={Math.min(i * 0.05, 0.25)}>
                     <motion.article
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      className="group flex gap-4 rounded-2xl border border-cocoa-900/8 bg-cream-100/60 p-4 transition-all duration-300 hover:border-brass-500/30 hover:bg-cream-100 hover:shadow-[var(--shadow-elevation-low)]"
+                      whileHover={{ y: -6 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="group overflow-hidden rounded-3xl border border-cocoa-900/8 bg-cream-100/80 shadow-[var(--shadow-elevation-low)] transition-all duration-300 hover:border-brass-500/40 hover:shadow-[var(--shadow-elevation-medium)]"
                     >
-                      {/* Item image */}
-                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
+                      {/* Item image - bigger and more prominent */}
+                      <div className="relative aspect-[4/3] w-full overflow-hidden">
                         <Image
                           src={item.image}
                           alt={item.name[lang]}
                           fill
-                          sizes="96px"
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                        {/* Gradient overlay for better text readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-cocoa-900/60 via-transparent to-transparent" />
+                        {/* Badge on image */}
+                        {item.badge ? (
+                          <span
+                            className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-extrabold backdrop-blur-sm ${
+                              item.badge === "spicy"
+                                ? "bg-red-500/20 text-red-100 ring-1 ring-red-400/30"
+                                : item.badge === "new"
+                                  ? "bg-emerald-500/20 text-emerald-100 ring-1 ring-emerald-400/30"
+                                  : "bg-brass-500/20 text-brass-100 ring-1 ring-brass-400/30"
+                            }`}
+                          >
+                            {badgeLabel(item.badge)}
+                          </span>
+                        ) : null}
+                        {/* Price overlay on image */}
+                        {item.price != null && !item.sizes ? (
+                          <div className="absolute bottom-3 left-3">
+                            <span className="rounded-full bg-cream-50/95 px-4 py-1.5 font-display text-lg font-bold text-cocoa-900 shadow-lg backdrop-blur-sm">
+                              <span dir="ltr">{item.price}</span>{" "}
+                              <span className="text-xs font-medium text-cocoa-500">
+                                {t.menu.currency}
+                              </span>
+                            </span>
+                          </div>
+                        ) : null}
                       </div>
 
                       {/* Item content */}
-                      <div className="flex min-w-0 flex-1 flex-col">
-                        <div className="flex items-start gap-2">
-                          <h3 className="font-display text-lg font-bold text-cocoa-900 transition-colors duration-300 group-hover:text-brass-700">
+                      <div className="p-5">
+                        <div className="flex items-start justify-between gap-2">
+                          <h3 className="font-display text-xl font-bold text-cocoa-900 transition-colors duration-300 group-hover:text-brass-700">
                             {item.name[lang]}
                           </h3>
-                          {item.badge ? (
-                            <span
-                              className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-extrabold ${
-                                item.badge === "spicy"
-                                  ? "bg-red-900/10 text-red-800"
-                                  : item.badge === "new"
-                                    ? "bg-emerald-900/10 text-emerald-800"
-                                    : "bg-brass-500/15 text-brass-700"
-                              }`}
-                            >
-                              {badgeLabel(item.badge)}
-                            </span>
-                          ) : null}
                         </div>
 
                         {item.desc ? (
-                          <p className="mt-1 text-xs leading-relaxed text-cocoa-500 line-clamp-2">
+                          <p className="mt-2 text-sm leading-relaxed text-cocoa-500 line-clamp-2">
                             {item.desc[lang]}
                           </p>
                         ) : null}
 
                         {/* Price / sizes */}
-                        <div className="mt-auto pt-2">
+                        <div className="mt-4">
                           {item.sizes ? (
                             <div className="flex flex-wrap gap-2">
                               {item.sizes.map((size) => (
                                 <span
                                   key={size.label.en}
-                                  className="rounded-full bg-brass-500/10 px-2.5 py-1 text-[11px] font-bold text-brass-700"
+                                  className="rounded-full bg-brass-500/10 px-3 py-1.5 text-xs font-bold text-brass-700 ring-1 ring-brass-500/20"
                                 >
                                   {size.label[lang]}{" "}
                                   <span dir="ltr">{size.price}</span>{" "}
@@ -217,9 +231,9 @@ export default function MenuClient({ categories }: { categories: MenuCategory[] 
                               ))}
                             </div>
                           ) : item.price != null ? (
-                            <p className="font-display text-xl font-bold text-brass-600">
+                            <p className="font-display text-2xl font-bold text-brass-600">
                               <span dir="ltr">{item.price}</span>{" "}
-                              <span className="text-xs font-medium text-cocoa-400">
+                              <span className="text-sm font-medium text-cocoa-400">
                                 {t.menu.currency}
                               </span>
                             </p>
