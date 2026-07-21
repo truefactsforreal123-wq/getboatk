@@ -9,7 +9,7 @@ import {
   toggleTableActive,
   generateTables,
 } from "@/lib/actions";
-import { QrCode, Plus, Power, PowerOff, X } from "lucide-react";
+import { QrCode, Plus, Power, PowerOff, X, Table2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { DownloadTableQRPDF } from "@/components/download-table-qr-pdf";
 import { DownloadAllQRPDF } from "@/components/download-all-qr-pdf";
@@ -222,61 +222,65 @@ export function TablesManager({
         {filtered.map((table) => (
           <div
             key={table.id}
-            className={`group rounded-xl border p-5 transition-all hover:scale-[1.01] ${
+            className={`group relative overflow-hidden rounded-2xl border shadow-lg transition-all duration-300 hover:shadow-xl ${
               table.isActive
-                ? "border-white/15 bg-ink-900 hover:border-white/15"
-                : "border-red-500/20 bg-red-500/5 opacity-60"
+                ? "border-white/10 bg-cocoa-900 hover:border-brass-500/30"
+                : "border-red-500/20 bg-cocoa-900/60 opacity-50"
             }`}
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="text-xl font-black text-cream">
-                  {t.table} {table.tableNumber}
-                </span>
+            <div className={`absolute inset-x-0 top-0 h-1 ${table.isActive ? "bg-brass-500" : "bg-red-500/40"}`} />
+            <div className="p-5 pt-6">
+              <div className="flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brass-500/10">
+                  <Table2 size={22} className="text-brass-400" />
+                </div>
+                <span className="text-3xl font-black text-cream">{table.tableNumber}</span>
+              </div>
+              <div className="mt-4 flex items-center gap-2">
+                <span className="text-sm font-bold text-cream/70">{t.table} {table.tableNumber}</span>
                 {!table.isActive && (
                   <span className="rounded-md bg-red-500/15 px-2 py-0.5 text-[10px] font-black text-red-400">
                     {t.inactive}
                   </span>
                 )}
               </div>
-            </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                <a
+                  href={`/admin/tables/print?table=${table.id}&autoPrint=1`}
+                  className="flex items-center gap-1.5 rounded-lg bg-brass-500/10 px-3 py-2 text-xs font-bold text-brass-400 hover:bg-brass-500/20 transition-colors"
+                >
+                  <QrCode size={14} />
+                  QR
+                </a>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              <a
-                href={`/admin/tables/print?table=${table.id}&autoPrint=1`}
-                className="flex items-center gap-1.5 rounded-lg bg-gold-500/10 px-3 py-2 text-xs font-bold text-gold-300 hover:bg-gold-500/20 transition-colors"
-              >
-                <QrCode size={14} />
-                QR
-              </a>
+                <DownloadTableQRPDF
+                  tableNumber={table.tableNumber}
+                  qrToken={table.qrToken}
+                  branchNameEn={table.branch.nameEn}
+                  branchNameAr={table.branch.nameAr}
+                />
 
-              <DownloadTableQRPDF
-                tableNumber={table.tableNumber}
-                qrToken={table.qrToken}
-                branchNameEn={table.branch.nameEn}
-                branchNameAr={table.branch.nameAr}
-              />
-
-              <button
-                onClick={() => handleToggle(table.id)}
-                className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors ${
-                  table.isActive
-                    ? "bg-white/5 text-cream/65 hover:bg-red-500/15 hover:text-red-400"
-                    : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
-                }`}
-              >
-                {table.isActive ? (
-                  <>
-                    <PowerOff size={14} />
-                    {t.deactivate}
-                  </>
-                ) : (
-                  <>
-                    <Power size={14} />
-                    {t.activate}
-                  </>
-                )}
-              </button>
+                <button
+                  onClick={() => handleToggle(table.id)}
+                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors ${
+                    table.isActive
+                      ? "bg-white/5 text-cream/55 hover:bg-red-500/15 hover:text-red-400"
+                      : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
+                  }`}
+                >
+                  {table.isActive ? (
+                    <>
+                      <PowerOff size={14} />
+                      {t.deactivate}
+                    </>
+                  ) : (
+                    <>
+                      <Power size={14} />
+                      {t.activate}
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         ))}
