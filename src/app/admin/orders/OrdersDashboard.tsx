@@ -318,9 +318,9 @@ export function OrdersDashboard({
 
                         <div className="mt-2">
                           <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-black ${statusInfo.color}`}>
-                            {order.status === "submitted" && <Bell size={12} className="ms-1" />}
-                            {order.status === "preparing" && <ChefHat size={12} className="ms-1" />}
-                            {order.status === "ready" && <PackageCheck size={12} className="ms-1" />}
+                            {order.status === "submitted" && <Bell size={12} className="me-1" />}
+                            {order.status === "preparing" && <ChefHat size={12} className="me-1" />}
+                            {order.status === "ready" && <PackageCheck size={12} className="me-1" />}
                             {statusInfo.label}
                           </span>
                         </div>
