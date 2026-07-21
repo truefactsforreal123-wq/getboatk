@@ -1,8 +1,9 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
-import { Flame, Lock } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAdminT } from "@/lib/use-admin-t";
@@ -34,34 +35,91 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink-950 px-4">
-      <div className="w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-cocoa-900 shadow-2xl">
-        <div className="bg-gradient-to-br from-cocoa-800 to-cocoa-900 px-8 py-10 text-center">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-brass-500/10 shadow-lg">
-            <Image src="/logo.jpg" alt="" width={56} height={56} className="rounded-xl" />
+    <div className="login-page flex min-h-screen items-center justify-center bg-cocoa-950 px-4">
+      {/* Subtle background texture */}
+      <div className="login-bg" />
+
+      <div className="login-card relative w-full max-w-md overflow-hidden rounded-3xl border border-white/[0.06] bg-cocoa-900/80 shadow-2xl backdrop-blur-xl">
+        {/* Top accent line */}
+        <div className="h-[2px] bg-gradient-to-r from-transparent via-brass-500/60 to-transparent" />
+
+        <div className="px-8 pt-10 pb-8">
+          {/* Logo */}
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-2xl bg-cocoa-800/80 ring-1 ring-white/[0.06]">
+                <Image src="/logo.jpg" alt="" width={48} height={48} className="rounded-xl" />
+              </div>
+              <div className="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-2 border-cocoa-900 bg-green-400" />
+            </div>
           </div>
-          <h1 className="mt-5 text-2xl font-black text-cream">{t.adminPanel}</h1>
-          <p className="mt-1 text-sm text-brass-400 font-bold">جيت بوئتك</p>
+
+          {/* Title */}
+          <div className="mt-6 text-center">
+            <h1 className="text-[22px] font-bold tracking-tight text-cream">{t.adminPanel}</h1>
+            <p className="mt-1.5 text-[13px] font-medium text-cream/40">جيت بوتك — إدارة</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="mt-8 grid gap-5">
+            {error && (
+              <div className="rounded-xl border border-red-500/20 bg-red-500/[0.08] px-4 py-3 text-[13px] font-medium text-red-400">
+                {error}
+              </div>
+            )}
+
+            <label className="grid gap-2">
+              <span className="text-[13px] font-semibold text-cream/50">{t.email}</span>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                className="login-input h-12 rounded-xl border border-white/[0.08] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream/25 focus:outline-none"
+                placeholder="admin@getboatkeg.com"
+              />
+            </label>
+
+            <label className="grid gap-2">
+              <span className="text-[13px] font-semibold text-cream/50">{t.password}</span>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
+                className="login-input h-12 rounded-xl border border-white/[0.08] bg-cocoa-950/60 px-4 text-[14px] font-medium text-cream placeholder:text-cream/25 focus:outline-none"
+              />
+            </label>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="login-button mt-2 flex h-12 items-center justify-center gap-2.5 rounded-xl text-[14px] font-bold tracking-wide disabled:opacity-50"
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  {t.signingIn}
+                </>
+              ) : (
+                t.signIn
+              )}
+            </button>
+          </form>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-4 p-8">
-          {error && <p className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-xs font-bold text-red-400">{error}</p>}
-
-          <label className="grid gap-1.5">
-            <span className="text-xs font-bold text-cream/60">{t.email}</span>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="min-h-12 rounded-xl border border-white/10 bg-cocoa-950 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-brass-500 focus:ring-1 focus:ring-brass-500/30 focus:outline-none transition-colors" placeholder="admin@getboatkeg.com" />
-          </label>
-
-          <label className="grid gap-1.5">
-            <span className="text-xs font-bold text-cream/60">{t.password}</span>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="min-h-12 rounded-xl border border-white/10 bg-cocoa-950 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-brass-500 focus:ring-1 focus:ring-brass-500/30 focus:outline-none transition-colors" />
-          </label>
-
-          <button type="submit" disabled={loading} className="brand-button mt-3 w-full rounded-xl">
-            {loading ? <Flame size={18} className="animate-spin" /> : <Lock size={18} />}
-            {loading ? t.signingIn : t.signIn}
-          </button>
-        </form>
+        {/* Bottom link */}
+        <div className="border-t border-white/[0.05] bg-cocoa-950/30 px-8 py-4">
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2 text-[13px] font-medium text-cream/35 transition-colors hover:text-cream/60"
+          >
+            <ArrowLeft size={14} />
+            {t.backToDashboard}
+          </Link>
+        </div>
       </div>
     </div>
   );

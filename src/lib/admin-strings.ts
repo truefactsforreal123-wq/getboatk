@@ -117,6 +117,10 @@ const ar = {
   tableQRLabel: "طاولة",
   language: "اللغة",
   dashboardSubtitle: "مرحباً بعودتك",
+  quickActions: "إجراءات سريعة",
+  manageOrders: "إدارة الطلبات النشطة",
+  editMenuItems: "تعديل أصناف القائمة",
+  manageTables: "إدارة الطاولات والفروع",
 };
 
 const en: Dict = {
@@ -236,6 +240,10 @@ const en: Dict = {
   tableQRLabel: "Table",
   language: "Language",
   dashboardSubtitle: "Welcome back",
+  quickActions: "Quick Actions",
+  manageOrders: "Manage active orders",
+  editMenuItems: "Edit menu items",
+  manageTables: "Manage tables & branches",
 };
 
 const LANG_KEY = "getboatkeg-admin-lang";
