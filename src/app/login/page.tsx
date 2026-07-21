@@ -35,27 +35,29 @@ export default function AdminLogin() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink-950 px-4">
-      <div className="w-full max-w-sm rounded-xl border border-white/8 bg-ink-900 p-8 shadow-2xl">
-        <div className="mb-8 text-center">
-          <Image src="/logo.jpg" alt="" width={72} height={72} className="mx-auto rounded-full shadow-gold-glow" />
-          <h1 className="mt-4 text-xl font-black text-cream">{t.adminPanel}</h1>
-          <p className="mt-1 text-xs text-cream/45">جيت بوئتك</p>
+      <div className="w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-cocoa-900 shadow-2xl">
+        <div className="bg-gradient-to-br from-cocoa-800 to-cocoa-900 px-8 py-10 text-center">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-brass-500/10 shadow-lg">
+            <Image src="/logo.jpg" alt="" width={56} height={56} className="rounded-xl" />
+          </div>
+          <h1 className="mt-5 text-2xl font-black text-cream">{t.adminPanel}</h1>
+          <p className="mt-1 text-sm text-brass-400 font-bold">جيت بوئتك</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-4">
-          {error && <p className="rounded-lg bg-brand-500/15 px-4 py-2.5 text-xs font-bold text-brand-300">{error}</p>}
+        <form onSubmit={handleSubmit} className="grid gap-4 p-8">
+          {error && <p className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-xs font-bold text-red-400">{error}</p>}
 
           <label className="grid gap-1.5">
-            <span className="text-xs font-bold text-cream/55">{t.email}</span>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="min-h-11 rounded-lg border border-white/10 bg-black/20 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-gold-400 focus:outline-none" placeholder="admin@getboatkeg.com" />
+            <span className="text-xs font-bold text-cream/60">{t.email}</span>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="min-h-12 rounded-xl border border-white/10 bg-cocoa-950 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-brass-500 focus:ring-1 focus:ring-brass-500/30 focus:outline-none transition-colors" placeholder="admin@getboatkeg.com" />
           </label>
 
           <label className="grid gap-1.5">
-            <span className="text-xs font-bold text-cream/55">{t.password}</span>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="min-h-11 rounded-lg border border-white/10 bg-black/20 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-gold-400 focus:outline-none" />
+            <span className="text-xs font-bold text-cream/60">{t.password}</span>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="min-h-12 rounded-xl border border-white/10 bg-cocoa-950 px-4 text-sm font-semibold text-cream placeholder:text-cream/25 focus:border-brass-500 focus:ring-1 focus:ring-brass-500/30 focus:outline-none transition-colors" />
           </label>
 
-          <button type="submit" disabled={loading} className="brand-button mt-2 w-full">
+          <button type="submit" disabled={loading} className="brand-button mt-3 w-full rounded-xl">
             {loading ? <Flame size={18} className="animate-spin" /> : <Lock size={18} />}
             {loading ? t.signingIn : t.signIn}
           </button>

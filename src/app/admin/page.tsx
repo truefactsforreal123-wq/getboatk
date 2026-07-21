@@ -4,6 +4,7 @@ import { Sidebar } from "./sidebar";
 import { redirect } from "next/navigation";
 import { T } from "@/components/admin-translate";
 import { MapPin, UtensilsCrossed, Star, CalendarDays, TrendingUp } from "lucide-react";
+import type { ElementType } from "react";
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
@@ -49,7 +50,7 @@ const colorMap = {
   red: { bg: "bg-red-500/10", icon: "text-red-400", accent: "bg-red-400" },
 } as const;
 
-function StatCard({ labelKey, value, icon: Icon, color }: { labelKey: string; value: number; icon: React.ElementType; color: keyof typeof colorMap }) {
+function StatCard({ labelKey, value, icon: Icon, color }: { labelKey: string; value: number; icon: ElementType; color: keyof typeof colorMap }) {
   const c = colorMap[color];
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-cocoa-900 shadow-lg transition-all duration-300 hover:border-white/20 hover:shadow-xl">
